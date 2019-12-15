@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="RMS.cpp" />
     <ClCompile Include="Views.cpp" />
@@ -168,6 +169,9 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Tables.h" />
 >>>>>>> bb03adad3188637be564d92ba1d43fa5198b3f9e
+=======
+    <ClCompile Include="RMS.cpp" />
+>>>>>>> parent of bb03ada... add
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

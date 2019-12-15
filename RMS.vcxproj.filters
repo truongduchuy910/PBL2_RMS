@@ -15,6 +15,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Controllers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,5 +43,7 @@
 >>>>>>> bb03adad3188637be564d92ba1d43fa5198b3f9e
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of bb03ada... add
   </ItemGroup>
 </Project>
