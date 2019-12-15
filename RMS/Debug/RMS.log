@@ -1,5 +1,200 @@
-﻿  List.cpp
+﻿  Controllers.cpp
+D:\Github\RMS\RMS\Controllers.cpp(1,23): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(3,13): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(6,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(9,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(12,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(15,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(18,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(24,23): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(26,13): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(29,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(32,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(35,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(38,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(46,23): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(48,13): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(51,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(54,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(57,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(60,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(67,24): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(69,13): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(72,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(75,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(82,23): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(84,13): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(87,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(90,9): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(103,27): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(105,5): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(106,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(108,26): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(110,5): error C2065: 'Menu': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(110,10): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(110,10): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(111,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(111,12): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(112,5): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(112,28): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(113,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(115,29): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(117,5): error C2065: 'Menu': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(117,10): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(117,10): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(118,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(118,12): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(119,5): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(119,33): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(120,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(123,27): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(125,5): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(126,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(128,26): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(130,5): error C2065: 'Desk': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(130,10): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(130,10): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(131,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(131,12): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(132,5): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(132,28): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(133,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(135,29): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(137,5): error C2065: 'Desk': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(137,10): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(137,10): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(138,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(138,12): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(139,5): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(139,33): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(140,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(142,27): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(144,5): error C2065: 'Order': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(144,11): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(144,11): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(145,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(145,12): error C2065: 'views': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(146,5): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(146,29): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(147,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(149,26): error C2653: 'Controllers': is not a class or namespace name
+D:\Github\RMS\RMS\Controllers.cpp(151,5): error C2065: 'Bill': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(151,10): error C2146: syntax error: missing ';' before identifier 'temp'
+D:\Github\RMS\RMS\Controllers.cpp(151,10): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(152,5): error C2065: 'temp': undeclared identifier
+D:\Github\RMS\RMS\Controllers.cpp(152,12): error C2065: 'views': undeclared identifier
+  List.cpp
   RMS.cpp
   Tables.cpp
+  Views.cpp
+D:\Github\RMS\RMS\Controllers.cpp(154,5): error C2065: 'controllers': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(2,16): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(5,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(5,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(6,46): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(10,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(10,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(11,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(11,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(12,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(12,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(13,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(13,31): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(14,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(14,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(15,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(16,9): error C2065: 'cin': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(22,16): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(25,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(25,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(26,46): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(30,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(30,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(31,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(31,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(32,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(32,29): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(33,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(33,32): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(34,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(35,9): error C2065: 'cin': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(40,20): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(42,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(42,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(43,43): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(44,42): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(45,25): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(47,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(47,17): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(50,20): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(50,20): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\RMS\RMS\Views.cpp(50,13): error C2146: syntax error: missing ';' before identifier 'menuAdd'
+D:\Github\RMS\RMS\Views.cpp(51,1): error C2143: syntax error: missing ';' before '{'
+D:\Github\RMS\RMS\Views.cpp(51,1): error C2447: '{': missing function header (old-style formal list?)
+D:\Github\RMS\RMS\Views.cpp(56,23): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(56,23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\RMS\RMS\Views.cpp(56,23): error C2086: 'int Menu': redefinition
+D:\Github\RMS\RMS\Views.cpp(50): message : see declaration of 'Menu'
+D:\Github\RMS\RMS\Views.cpp(56,13): error C2146: syntax error: missing ';' before identifier 'menuRemove'
+D:\Github\RMS\RMS\Views.cpp(57,1): error C2143: syntax error: missing ';' before '{'
+D:\Github\RMS\RMS\Views.cpp(57,1): error C2447: '{': missing function header (old-style formal list?)
+D:\Github\RMS\RMS\Views.cpp(65,16): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(67,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(67,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(68,46): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(72,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(72,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(73,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(73,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(74,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(74,29): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(75,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(75,32): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(76,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(77,9): error C2065: 'cin': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(82,20): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(84,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(84,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(85,43): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(86,31): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(87,25): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(89,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(89,17): error C2065: 'table': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(92,20): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(92,20): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\RMS\RMS\Views.cpp(92,13): error C2146: syntax error: missing ';' before identifier 'deskAdd'
+D:\Github\RMS\RMS\Views.cpp(93,1): error C2143: syntax error: missing ';' before '{'
+D:\Github\RMS\RMS\Views.cpp(93,1): error C2447: '{': missing function header (old-style formal list?)
+D:\Github\RMS\RMS\Views.cpp(100,23): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(100,23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\RMS\RMS\Views.cpp(100,23): error C2086: 'int Desk': redefinition
+D:\Github\RMS\RMS\Views.cpp(92): message : see declaration of 'Desk'
+D:\Github\RMS\RMS\Views.cpp(100,13): error C2146: syntax error: missing ';' before identifier 'deskRemove'
+D:\Github\RMS\RMS\Views.cpp(101,1): error C2143: syntax error: missing ';' before '{'
+D:\Github\RMS\RMS\Views.cpp(101,1): error C2447: '{': missing function header (old-style formal list?)
+D:\Github\RMS\RMS\Views.cpp(106,17): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(108,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(108,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(109,47): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(114,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(114,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(115,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(115,29): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(116,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(117,9): error C2065: 'cin': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(122,22): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(122,22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\RMS\RMS\Views.cpp(122,14): error C2146: syntax error: missing ';' before identifier 'orderAdd'
+D:\Github\RMS\RMS\Views.cpp(123,1): error C2143: syntax error: missing ';' before '{'
+D:\Github\RMS\RMS\Views.cpp(123,1): error C2447: '{': missing function header (old-style formal list?)
+D:\Github\RMS\RMS\Views.cpp(135,16): error C2653: 'Views': is not a class or namespace name
+D:\Github\RMS\RMS\Views.cpp(138,5): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(138,13): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(139,46): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(144,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(144,30): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(145,9): error C2065: 'cout': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(145,29): error C2065: 'endl': undeclared identifier
+D:\Github\RMS\RMS\Views.cpp(146,9): error C2065: 'cout': undeclared identifier
   Generating Code...
-  RMS.vcxproj -> D:\Github\RMS\RMS\Debug\RMS.exe
+D:\Github\RMS\RMS\Views.cpp(146,14): fatal error C1003: error count exceeds 100; stopping compilation

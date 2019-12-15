@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{44541543-2FD5-4225-8666-709C008B14AA}</ProjectGuid>
+    <ProjectGuid>{65EE1ED8-2776-4B6D-9AE2-6AF4497A8960}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>RMS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -151,7 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controllers.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="RMS.cpp" />
+    <ClCompile Include="Tables.cpp" />
+    <ClCompile Include="Views.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Controllers.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Tables.h" />
+    <ClInclude Include="Views.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
