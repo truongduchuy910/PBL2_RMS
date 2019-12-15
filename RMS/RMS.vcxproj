@@ -151,13 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="List.cpp" />
     <ClCompile Include="RMS.cpp" />
-    <ClCompile Include="Tables.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="List.h" />
-    <ClInclude Include="Tables.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
