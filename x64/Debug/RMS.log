@@ -1,9 +1,0 @@
-﻿  RMS.cpp
-<<<<<<< HEAD
-D:\Github\RMS\List.cpp(30,15): warning C4101: 'temp': unreferenced local variable
-D:\Github\RMS\List.cpp(26): message : while compiling class template member function 'List<Menu>::~List(void)'
-D:\Github\RMS\RMS.cpp(9): message : see reference to function template instantiation 'List<Menu>::~List(void)' being compiled
-D:\Github\RMS\RMS.cpp(9): message : see reference to class template instantiation 'List<Menu>' being compiled
-=======
->>>>>>> parent of bb03ada... add
-  RMS.vcxproj -> D:\Github\RMS\x64\Debug\RMS.exe
