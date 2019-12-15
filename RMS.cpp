@@ -1,7 +1,17 @@
 
 #include <iostream>
-
+#include "List.h"
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+	List<Menu> menus;
+	Menu menu;
+	cin >> menu;
+	menus.insert(menu);
+	menus.insert(menu);
+	menus.insert(menu);
+	menus.insert(menu);
+	menus.findAndRemove(menu);
+	Menu::head();
+	menus.print();
 }

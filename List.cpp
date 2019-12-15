@@ -29,12 +29,12 @@ List<Data>::~List()
 		Node<Data>* currentNode = start;
 		Node<Data>* temp;
 
-		while (currentNode != 0)
+		/*while (currentNode != 0)
 		{
 			temp = currentNode;
 			currentNode = currentNode->next;
 			delete temp;
-		}
+		}*/
 	}
 }
 
@@ -74,7 +74,6 @@ void List<Data>::findAndRemove(const Data& dataIn)
 	}
 	if (temp != NULL)
 	{
-		delete temp;
 		start = start->next;
 	}
 }
@@ -91,7 +90,9 @@ void List<Data>::print()
 		Node<Data>* currentNode = start;
 		while (currentNode != NULL) //prints until the end of the list is reached
 		{
-			cout << currentNode->data << endl;
+			if (currentNode) {
+				cout << currentNode->data << endl;
+			}
 			currentNode = currentNode->next; //moves to next node in list
 		}
 	}

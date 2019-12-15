@@ -46,4 +46,5 @@ private:
 	Node<Data>* start;
 	bool isEmpty();
 };
+#include "List.cpp"
 #endif

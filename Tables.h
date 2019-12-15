@@ -17,6 +17,7 @@ public:
 		this->foodId = 0;
 		this->cost = 0.0;
 	}
+	~Menu() {};
 	static void head()
 	{
 		cout << setw(6) << "foodId" << setw(6) << "name" << setw(6) << "cost" << endl;
