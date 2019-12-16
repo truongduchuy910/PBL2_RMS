@@ -3,18 +3,14 @@
 #define CONTROLLERS_H
 #include<iostream>
 #include"List.h"
-#include"Tables.h"
+//#include"Tables.h"
 #include"Views.h"
 using namespace std;
-
 class Controllers;
 class Controllers
 {
 public:
-    class
-    {
-        List<Menu> menus;
-    }db;
+    List<Menu> menus;
     Views views;
     void home();
     void menu();
