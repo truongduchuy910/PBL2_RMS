@@ -1,6 +1,7 @@
+
 #ifndef LIST_CPP
 #define LIST_CPP
-#include "list.h"
+#include "List.h"
 template <typename Data>
 Node<Data>::Node(Data dataIn)
 {
@@ -48,7 +49,7 @@ bool List<Data>::isEmpty()
 }
 
 template <typename Data>
-void List<Data>::insert(const Data& dataIn)
+int List<Data>::insert(const Data& dataIn)
 {
 	if (isEmpty())
 	{
@@ -65,7 +66,7 @@ void List<Data>::insert(const Data& dataIn)
 }
 
 template <typename Data>
-void List<Data>::findAndRemove(const Data& dataIn)
+int List<Data>::findAndRemove(const Data& dataIn)
 {
 	Node<Data>* temp = this->start;
 	while (temp != NULL && !(temp->data == dataIn))
@@ -80,7 +81,7 @@ void List<Data>::findAndRemove(const Data& dataIn)
 }
 
 template <typename Data>
-void List<Data>::print()
+int List<Data>::print()
 {
 	if (isEmpty())
 	{
@@ -97,7 +98,7 @@ void List<Data>::print()
 	}
 }
 //
-//void Models::getData(List<Menu>& menus) {
+//int Models::getData(List<Menu>& menus) {
 //	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 //	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
 //		SQLCHAR sqlVersion[SQL_RESULT_LEN];
@@ -116,7 +117,7 @@ void List<Data>::print()
 //		cout << "fail" << endl;
 //	}
 //}
-////void Models::menuAdd(const Menu& menu) {
+////int Models::menuAdd(const Menu& menu) {
 ////	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
 ////	command += string(menu.name) + AND + to_string(menu.cost);
 ////	command += "')";
@@ -135,7 +136,7 @@ void List<Data>::print()
 ////		break;
 ////	}
 ////}
-////void Models::menuRemove(const int& foodId) {
+////int Models::menuRemove(const int& foodId) {
 ////	string command = "DELETE FROM MENU WHERE FoodId = '" + to_string(foodId) + s;
 ////	cout << command << endl;
 ////	std::wstring stemp = s2ws(command);
@@ -153,7 +154,7 @@ void List<Data>::print()
 ////		break;
 ////	}
 ////}
-////void Models::menuUpdate(const Menu& menu) {
+////int Models::menuUpdate(const Menu& menu) {
 ////	string command = "UPDATE MENU SET FoodName = '";
 ////	command += string(menu.foodName) + s;
 ////	command += ", Cost = '";
@@ -186,4 +187,30 @@ void List<Data>::print()
 //	delete[] buf;
 //	return r;
 //}
+const bool Menu::operator==(const Menu& menu)
+{
+	if (this->foodId == menu.foodId)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+};
+
+ostream& operator<<(ostream& os, const Menu& menu)
+{
+	os << setw(6) << menu.foodId << setw(6) << menu.name << setw(6) << menu.cost;
+	return os;
+}
+istream& operator>>(istream& is, Menu& menu)
+{
+	cout << "name: ";
+	is.ignore();
+	getline(is, menu.name);
+	cout << "cost: ";
+	is >> menu.cost;
+	return is;
+}
 #endif
