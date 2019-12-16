@@ -39,11 +39,10 @@ int Views::menu()
 
     return n;
 };
-int Views::menuShow()
+int Views::menuShow(List<Menu>& menus)
 {
-    cout << endl
-        << "=============== MENU SHOW" << endl
-        << "foodId name         cost" << endl;
+    Menu::head();
+    //menus.print();
     return 0;
    /* for (int i = 0; i < table.menu.length; i++)
     {
@@ -53,6 +52,9 @@ int Views::menuShow()
 Menu Views::menuAdd()
 {
     Menu newMenu;
+    cout << endl
+        << "=============== MENU ADD" << endl;
+    cout << "Input values:" << endl;
     cin >> newMenu;
     return newMenu;
 }

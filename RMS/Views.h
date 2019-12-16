@@ -8,7 +8,7 @@ class Views
 public:
     int home();
     int menu();
-    int menuShow();
+    int menuShow(List<Menu>&);
     Menu menuAdd();
     Menu menuRemove();
 	/*
