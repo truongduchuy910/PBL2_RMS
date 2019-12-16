@@ -8,7 +8,7 @@ class Menu
 {
 public:
 	int foodId;
-	string name;
+	char name[50];
 	double cost;
 	Menu()
 	{
@@ -17,7 +17,7 @@ public:
 	}
 	static void head()
 	{
-		cout << setw(6) << "foodId" << setw(6) << "name" << setw(6) << "cost" << endl;
+		cout << setw(7) << "foodId" << setw(50) << "name" << setw(7) << "cost" << endl;
 	}
 	const bool operator==(const Menu&);
 	friend ostream& operator<<(ostream&, const Menu&);

@@ -37,45 +37,53 @@ Models::Models() {
 	cout << "Connecting 100%... Ready to query." << endl;
 }
 
-//bool Models::get(List<Menu>& menus) {
-//	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-//	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
-//		SQLCHAR sqlVersion[SQL_RESULT_LEN];
-//		SQLINTEGER ptrSqlVersion;
-//		Menu temp;
-//		cout << "Quering..." << endl;
-//		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
-//			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
-//			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
-//			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
-//			menus.insert(temp);
-//		}
-//		cout << "Quering done!" << endl;
-//	}
-//	else {
-//		cout << "fail" << endl;
-//	}
-//	return true;
-//}
-////void Models::menuAdd(const Menu& menu) {
-////	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
-////	command += string(menu.name) + AND + to_string(menu.cost);
-////	command += "')";
-////	std::wstring stemp = s2ws(command);
-////	LPCWSTR result = stemp.c_str();
-////	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-////	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
-////	case SQL_SUCCESS:
-////		cout << "[INSERT] Successful!" << endl;
-////		break;
-////	case SQL_SUCCESS_WITH_INFO:
-////		cout << "[INSERT] Successful!" << endl;
-////		break;
-////	default:
-////		cout << "[INSERT] Fail!" << endl;
-////		break;
-////	}
-////}
+int Models::get(List<Menu>& menus) {
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
+		SQLCHAR sqlVersion[SQL_RESULT_LEN];
+		SQLINTEGER ptrSqlVersion;
+		Menu temp;
+		Menu::head();
+		cout << "Quering..." << endl;
+		menus.empty();
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
+			menus.insert(temp);
+		}
+		cout << "Quering done!" << endl;
+	}
+	else {
+		cout << "fail" << endl;
+	}
+	return true;
+}
+int Models::add(const Menu& menu) {
+	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
+	command += string(menu.name) + AND + to_string(menu.cost);
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+
+	//GET ID OF THIS RECORD
+	int id = 0;
+	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+	SQLINTEGER ptrSqlVersion;
+	command = "SELECT FoodID FROM MENU WHERE FoodName = '";
+	command += string(menu.name);
+	command += "'";
+	stemp = s2ws(command);
+	result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+		SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &id, SQL_RESULT_LEN, &ptrSqlVersion);
+	}
+	return id;
+}
 ////void Models::menuRemove(const int& foodId) {
 ////	string command = "DELETE FROM MENU WHERE FoodId = '" + to_string(foodId) + s;
 ////	cout << command << endl;
@@ -116,15 +124,15 @@ Models::Models() {
 ////		break;
 ////	}
 ////}
-//wstring Models::s2ws(const string& s)
-//{
-//	int len;
-//	int slength = (int)s.length() + 1;
-//	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
-//	wchar_t* buf = new wchar_t[len];
-//	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
-//	wstring r(buf);
-//	delete[] buf;
-//	return r;
-//}
+wstring Models::s2ws(const string& s)
+{
+	int len;
+	int slength = (int)s.length() + 1;
+	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
+	wchar_t* buf = new wchar_t[len];
+	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	wstring r(buf);
+	delete[] buf;
+	return r;
+}
 #endif

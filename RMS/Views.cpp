@@ -64,8 +64,8 @@ Menu Views::menuRemove()
 	Menu newMenu;
 	cout << endl
 		<< "=============== MENU REMOVE" << endl;
-	cout << "Input condition:" << endl;
-	cin >> newMenu;
+	cout << "Input foodId:" << endl;
+	cin >> newMenu.foodId;
 	return newMenu;
 }
 //int Views::desk()

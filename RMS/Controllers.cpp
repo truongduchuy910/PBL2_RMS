@@ -2,66 +2,77 @@
 #ifndef CONTROLLERS_CPP
 #define CONTROLLERS_CPP
 #include"Controllers.h"
+void Controllers::init() {
+	models.get(menus);
+}
 void Controllers::home()
 {
-    switch (views.home())
-    {
-    case 0:
-        cout << "a du!!!! :v";
-        break;
-    case 1:
-        this->menu();
-        break;
-    /*case 2:
-        this->desk();
-        break;
-    case 3:
-        this->order();
-        break;
-    case 4:
-        this->bill();
-        break;*/
-    default:
-        break;
-    }
+	switch (views.home())
+	{
+	case 0:
+		break;
+	case 1:
+		this->menu();
+		break;
+		/*case 2:
+			this->desk();
+			break;
+		case 3:
+			this->order();
+			break;
+		case 4:
+			this->bill();
+			break;*/
+	default:
+		break;
+	}
 }
 void Controllers::menu()
 {
-    switch (views.menu())
-    {
-    case 0:
-        this->home();
-        break;
-    case 1:
-        this->menuShow();
-        break;
-    case 2:
-        this->menuAdd();
-        break;
-    case 3:
-        this->menuRemove();
-        break;
+	switch (views.menu())
+	{
+	case 0:
+		this->home();
+		break;
+	case 1:
+		this->menuShow();
+		break;
+	case 2:
+		this->menuAdd();
+		break;
+	case 3:
+		this->menuRemove();
+		break;
 
-    default:
-        break;
-    }
+	default:
+		break;
+	}
 }
 
 void Controllers::menuShow()
 {
-    views.menuShow();
-    this->menu();
+	views.menuShow();
+	menus.print();
+	this->menu();
 }
 
 void Controllers::menuAdd()
 {
-    Menu temp = views.menuAdd();
-    this->menu();
+	Menu temp = views.menuAdd();
+	int id = models.add(temp);
+	if (id)
+	{
+		temp.foodId = id;
+		menus.insert(temp);
+	}
+	this->menu();
 }
 
 void Controllers::menuRemove()
 {
-    views.menuRemove();
+	Menu temp = views.menuRemove();
+	menus.findAndRemove(temp);
+	this->menu();
 }
 
 //void Controllers::desk()

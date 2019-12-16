@@ -34,7 +34,6 @@ List<Data>::~List()
 		{
 			temp = currentNode;
 			currentNode = currentNode->next;
-			delete temp;
 		}
 	}
 }
@@ -55,6 +54,7 @@ int List<Data>::insert(const Data& dataIn)
 	{
 		Node<Data>* newNode = new Node<Data>(dataIn);
 		start = newNode;
+		this->length++;
 	}
 	else
 	{
@@ -62,7 +62,10 @@ int List<Data>::insert(const Data& dataIn)
 		Node<Data>* newNode = new Node<Data>(dataIn);
 		newNode->next = start;
 		start = newNode;
+		this->length++;
+
 	}
+	return true;
 }
 
 template <typename Data>
@@ -75,9 +78,11 @@ int List<Data>::findAndRemove(const Data& dataIn)
 	}
 	if (temp != NULL)
 	{
-		delete temp;
 		start = start->next;
+		this->length--;
+
 	}
+	return true;
 }
 
 template <typename Data>
@@ -92,9 +97,18 @@ int List<Data>::print()
 		Node<Data>* currentNode = start;
 		while (currentNode != NULL) //prints until the end of the list is reached
 		{
-			cout << currentNode->data << endl;
+			if (currentNode != NULL) {
+				cout << currentNode->data << endl;
+
+			}
 			currentNode = currentNode->next; //moves to next node in list
 		}
 	}
+	return true;
+}
+template <typename Data>
+int List<Data>::empty() {
+	this->start = NULL;
+	return true;
 }
 #endif

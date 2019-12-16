@@ -7,6 +7,7 @@
 #include <sql.h>
 #include <string>
 #include <cstring>
+#include "Tables.h"
 #include "List.h"
 
 using namespace std;
@@ -25,13 +26,14 @@ public:
 
 	Models();
 	~Models() {};
-//	bool get(List<Menu>&);
-//	//void menuShow(List<Menu>& menus);
-//	//void menuAdd(const Menu&);
-//	//void menuRemove(const int&);
-//	//void menuUpdate(const Menu&);
-//
-//	wstring s2ws(const string& s);
-//
+	int get(List<Menu>&);
+	int add(const Menu&);
+	//	//void menuShow(List<Menu>& menus);
+	//	//void menuAdd(const Menu&);
+	//	//void menuRemove(const int&);
+	//	//void menuUpdate(const Menu&);
+	//
+		wstring s2ws(const string& s);
+	
 };
 #endif // !MODEL_H

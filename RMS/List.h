@@ -32,16 +32,19 @@ template <typename Data>
 class List
 {
 public:
+	int length;
 	List();
 	~List();
 	int insert(const Data&);
 	int findAndRemove(const Data&);
 	int print();
+	int empty();
 
 private:
 	Node<Data>* start;
 	bool isEmpty();
 };
+#include "List.cpp"
 #endif
 
 

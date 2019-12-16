@@ -5,11 +5,15 @@
 #include "Tables.h"
 #include"List.h"
 #include"Views.h"
+#include"Models.h"
 using namespace std;
 class Controllers
 {
 public:
+	List<Menu> menus;
 	Views views;
+	Models models;
+	void init();
 	void home();
 	void menu();
 	void menuShow();

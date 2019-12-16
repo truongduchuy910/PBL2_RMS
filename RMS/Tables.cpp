@@ -16,14 +16,14 @@ const bool Menu::operator==(const Menu& menu)
 
 ostream& operator<<(ostream& os, const Menu& menu)
 {
-	os << setw(6) << menu.foodId << setw(6) << menu.name << setw(6) << menu.cost;
+	os << setw(7) << menu.foodId << setw(50) << menu.name << setw(7) << menu.cost;
 	return os;
 }
 istream& operator>>(istream& is, Menu& menu)
 {
 	cout << "name: ";
 	is.ignore();
-	getline(is, menu.name);
+	is.getline(menu.name, 50);
 	cout << "cost: ";
 	is >> menu.cost;
 	return is;
