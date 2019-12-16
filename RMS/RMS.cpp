@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 #include "Models.h"
+Models models;
 int main()
 {
     std::cout << "Hello World!\n";

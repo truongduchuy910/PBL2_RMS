@@ -1,42 +1,42 @@
 #ifndef MODELS_CPP
 #define MODELS_CPP
 #include "Models.h"
-//Models::Models() {
-//
-//	sqlConnHandle = NULL;
-//	sqlStmtHandle = NULL;
-//	cout << "Connecting   0%... Initialize." << endl;
-//	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &sqlEnvHandle)) {
-//		cout << "Connecting  15%... SQLAllocHandle." << endl;
-//	}
-//	if (SQL_SUCCESS == SQLSetEnvAttr(sqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0)) {
-//		cout << "Connecting  30%... SQLSetEnvAttr." << endl;
-//	}
-//	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, sqlEnvHandle, &sqlConnHandle)) {
-//		cout << "Connecting  45%... SQLAllocHandle." << endl;
-//	}
-//	switch (SQLDriverConnect(sqlConnHandle,
-//		NULL,
-//		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=localhost;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
-//		SQL_NTS,
-//		retconstring,
-//		1024,
-//		NULL,
-//		SQL_DRIVER_NOPROMPT))
-//	{
-//	case SQL_SUCCESS:
-//		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
-//		break;
-//	case SQL_SUCCESS_WITH_INFO:
-//		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
-//		break;
-//	default:
-//		cout << "Connecting fail... Could not connect to SQL Server." << endl;
-//		break;
-//	}
-//	cout << "Connecting 100%... Ready to query." << endl;
-//}
-//
+Models::Models() {
+
+	sqlConnHandle = NULL;
+	sqlStmtHandle = NULL;
+	cout << "Connecting   0%... Initialize." << endl;
+	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &sqlEnvHandle)) {
+		cout << "Connecting  15%... SQLAllocHandle." << endl;
+	}
+	if (SQL_SUCCESS == SQLSetEnvAttr(sqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0)) {
+		cout << "Connecting  30%... SQLSetEnvAttr." << endl;
+	}
+	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, sqlEnvHandle, &sqlConnHandle)) {
+		cout << "Connecting  45%... SQLAllocHandle." << endl;
+	}
+	switch (SQLDriverConnect(sqlConnHandle,
+		NULL,
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=localhost;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
+		SQL_NTS,
+		retconstring,
+		1024,
+		NULL,
+		SQL_DRIVER_NOPROMPT))
+	{
+	case SQL_SUCCESS:
+		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
+		break;
+	default:
+		cout << "Connecting fail... Could not connect to SQL Server." << endl;
+		break;
+	}
+	cout << "Connecting 100%... Ready to query." << endl;
+}
+
 //bool Models::get(List<Menu>& menus) {
 //	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 //	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
