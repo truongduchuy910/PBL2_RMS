@@ -10,16 +10,16 @@ void Controllers::home()
         cout << "a du!!!! :v";
         break;
     case 1:
-        controllers.menu();
+        this->menu();
         break;
     case 2:
-        controllers.desk();
+        //this->desk();
         break;
     case 3:
-        controllers.order();
+        //this->order();
         break;
     case 4:
-        controllers.bill();
+        //this->bill();
         break;
     default:
         break;
@@ -30,131 +30,131 @@ void Controllers::menu()
     switch (views.menu())
     {
     case 0:
-        controllers.home();
+        this->home();
         break;
     case 1:
-        controllers.menuShow();
+        this->menuShow();
         break;
     case 2:
-        controllers.menuAdd();
+        this->menuAdd();
         break;
     case 3:
-        controllers.menuRemove();
+        this->menuRemove();
         break;
 
     default:
         break;
     }
 }
-
-void Controllers::desk()
-{
-    switch (views.desk())
-    {
-    case 0:
-        controllers.home();
-        break;
-    case 1:
-        controllers.deskShow();
-        break;
-    case 2:
-        controllers.deskAdd();
-        break;
-    case 3:
-        controllers.deskRemove();
-        break;
-    default:
-        break;
-    }
-}
-
-void Controllers::order()
-{
-    switch (views.order())
-    {
-    case 0:
-        controllers.home();
-        break;
-    case 1:
-        controllers.orderAdd();
-        break;
-    default:
-        break;
-    }
-}
-
-void Controllers::bill()
-{
-    switch (views.bill())
-    {
-    case 0:
-        controllers.home();
-        break;
-    case 1:
-        controllers.billAdd();
-        break;
-    case 2:
-        //controllers.billOrder();
-        break;
-    case 3:
-        // controllers.billPayment();
-        break;
-    default:
-        break;
-    }
-}
+//
+//void Controllers::desk()
+//{
+//    switch (views.desk())
+//    {
+//    case 0:
+//        this->home();
+//        break;
+//    case 1:
+//        this->deskShow();
+//        break;
+//    case 2:
+//        this->deskAdd();
+//        break;
+//    case 3:
+//        this->deskRemove();
+//        break;
+//    default:
+//        break;
+//    }
+//}
+//
+//void Controllers::order()
+//{
+//    switch (views.order())
+//    {
+//    case 0:
+//        this->home();
+//        break;
+//    case 1:
+//        this->orderAdd();
+//        break;
+//    default:
+//        break;
+//    }
+//}
+//
+//void Controllers::bill()
+//{
+//    switch (views.bill())
+//    {
+//    case 0:
+//        this->home();
+//        break;
+//    case 1:
+//        this->billAdd();
+//        break;
+//    case 2:
+//        //this->billOrder();
+//        break;
+//    case 3:
+//        // this->billPayment();
+//        break;
+//    default:
+//        break;
+//    }
+//}
 
 void Controllers::menuShow()
 {
     views.menuShow();
-    controllers.menu();
+    this->menu();
 };
 void Controllers::menuAdd()
 {
     Menu temp;
     temp = views.menuAdd();
     //table.menu.insertFirst(temp);
-    controllers.menu();
+    this->menu();
 };
 void Controllers::menuRemove()
 {
     Menu temp;
     temp = views.menuRemove();
     //table.menu.findOneAndRemove(temp);
-    controllers.menu();
+    this->menu();
 };
 
 //void Controllers::deskShow()
 //{
 //    views.deskShow();
-//    controllers.desk();
+//    this->desk();
 //}
 //void Controllers::deskAdd()
 //{
 //    Desk temp;
 //    temp = views.deskAdd();
 //    table.desk.insertFirst(temp);
-//    controllers.desk();
+//    this->desk();
 //}
 //void Controllers::deskRemove()
 //{
 //    Desk temp;
 //    temp = views.deskRemove();
 //    table.desk.findOneAndRemove(temp);
-//    controllers.desk();
+//    this->desk();
 //}
 //void Controllers::orderAdd()
 //{
 //    Order temp;
 //    temp = views.orderAdd();
 //    table.order.insertFirst(temp);
-//    controllers.order();
+//    this->order();
 //}
 //void Controllers::billAdd()
 //{
 //    Bill temp;
 //    temp = views.billAdd();
 //    // table.bill.insertFirst(temp);
-//    controllers.bill();
+//    this->bill();
 //}
 #endif

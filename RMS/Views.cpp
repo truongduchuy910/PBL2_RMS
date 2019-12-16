@@ -65,23 +65,23 @@ Menu Views::menuRemove()
     cin >> newMenu;
     return newMenu;
 }
-int Views::desk()
-{
-    cout << endl
-        << "=============== DESK CONTROL" << endl;
-    int n;
-    do
-    {
-        cout << "0. back" << endl;
-        cout << "1. show" << endl;
-        cout << "2. add" << endl;
-        cout << "3. remove" << endl;
-        cout << "Choose your option [0-3]: ";
-        cin >> n;
-    } while (n < 0 || n > 8);
-
-    return n;
-};
+//int Views::desk()
+//{
+//    cout << endl
+//        << "=============== DESK CONTROL" << endl;
+//    int n;
+//    do
+//    {
+//        cout << "0. back" << endl;
+//        cout << "1. show" << endl;
+//        cout << "2. add" << endl;
+//        cout << "3. remove" << endl;
+//        cout << "Choose your option [0-3]: ";
+//        cin >> n;
+//    } while (n < 0 || n > 8);
+//
+//    return n;
+//};
 //int Views::deskShow()
 //{
 //    cout << endl

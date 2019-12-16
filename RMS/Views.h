@@ -10,15 +10,16 @@ public:
     int menuShow();
     Menu menuAdd();
     Menu menuRemove();
+	/*
     int desk();
-   /* Desk deskAdd();
-    Desk deskRemove();*/
+    Desk deskAdd();
+    Desk deskRemove();
     int deskShow();
     int order();
-    /*Order orderAdd();*/
+    Order orderAdd();
     int bill();
-    /*Bill billAdd();*/
-    //int billShow();
+    Bill billAdd();
+    int billShow();*/
 };
-extern Views views;
+//Views views;
 #endif
