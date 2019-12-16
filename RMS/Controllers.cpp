@@ -49,14 +49,13 @@ void Controllers::menu()
 
 void Controllers::menuShow()
 {
-    views.menuShow(menus);
+    views.menuShow();
     this->menu();
 }
 
 void Controllers::menuAdd()
 {
     Menu temp = views.menuAdd();
-    //db.menus.insert(temp);
     this->menu();
 }
 

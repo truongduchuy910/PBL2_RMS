@@ -4,68 +4,69 @@
 int Views::home()
 {
 
-    cout << endl
-        << "=============== HOME CONTROL" << endl;
-    int n;
-    do
-    {
-        cout << "0. exit" << endl;
-        cout << "1. menu" << endl;
-        cout << "2. desk" << endl;
-        cout << "3. order" << endl;
-        cout << "4. bill" << endl;
-        cout << "Choose your option [0-4]: ";
-        cin >> n;
-    } while (n < 0 || n > 8);
+	cout << endl
+		<< "=============== HOME CONTROL" << endl;
+	int n;
+	do
+	{
+		cout << "0. exit" << endl;
+		cout << "1. menu" << endl;
+		cout << "2. desk" << endl;
+		cout << "3. order" << endl;
+		cout << "4. bill" << endl;
+		cout << "Choose your option [0-4]: ";
+		cin >> n;
+	} while (n < 0 || n > 8);
 
-    return n;
+	return n;
 }
 
 int Views::menu()
 {
 
-    cout << endl
-        << "=============== MENU CONTROL" << endl;
-    int n;
-    do
-    {
-        cout << "0. back" << endl;
-        cout << "1. show" << endl;
-        cout << "2. add" << endl;
-        cout << "3. remove" << endl;
-        cout << "Choose your option [0-3]: ";
-        cin >> n;
-    } while (n < 0 || n > 8);
+	cout << endl
+		<< "=============== MENU CONTROL" << endl;
+	int n;
+	do
+	{
+		cout << "0. back" << endl;
+		cout << "1. show" << endl;
+		cout << "2. add" << endl;
+		cout << "3. remove" << endl;
+		cout << "Choose your option [0-3]: ";
+		cin >> n;
+	} while (n < 0 || n > 8);
 
-    return n;
+	return n;
 };
-int Views::menuShow(List<Menu>& menus)
+int Views::menuShow()
 {
-    Menu::head();
-    //menus.print();
-    return 0;
-   /* for (int i = 0; i < table.menu.length; i++)
-    {
-        cout << table.menu[i];
-    }*/
+	Menu::head();
+	//dbMenus.print();
+	//menus.print();
+	return 0;
+	/* for (int i = 0; i < table.menu.length; i++)
+	 {
+		 cout << table.menu[i];
+	 }*/
 }
 Menu Views::menuAdd()
 {
-    Menu newMenu;
-    cout << endl
-        << "=============== MENU ADD" << endl;
-    cout << "Input values:" << endl;
-    cin >> newMenu;
-    return newMenu;
+	Menu newMenu;
+	cout << endl
+		<< "=============== MENU ADD" << endl;
+	cout << "Input values:" << endl;
+	cin >> newMenu;
+	return newMenu;
 }
 Menu Views::menuRemove()
 {
-    Menu newMenu;
-    cout << endl
-        << "=============== MENU REMOVE" << endl;
-    cout << "Input condition:" << endl;
-    cin >> newMenu;
-    return newMenu;
+	Menu newMenu;
+	cout << endl
+		<< "=============== MENU REMOVE" << endl;
+	cout << "Input condition:" << endl;
+	cin >> newMenu;
+	return newMenu;
 }
 //int Views::desk()
 //{
@@ -173,12 +174,12 @@ Menu Views::menuRemove()
 //}
 /*int Views::billShow()
 {
-    cout << endl
-         << "=============== BILL SHOW" << endl
-         << "deskId status" << endl;
-    for (int i = 0; i < table.desk.length; i++)
-    {
-        cout << table.desk[i];
-    }
+	cout << endl
+		 << "=============== BILL SHOW" << endl
+		 << "deskId status" << endl;
+	for (int i = 0; i < table.desk.length; i++)
+	{
+		cout << table.desk[i];
+	}
 }*/
 #endif

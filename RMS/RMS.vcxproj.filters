@@ -21,16 +21,16 @@
     <ClCompile Include="Controllers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Views.cpp">
+    <ClCompile Include="List.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="List.cpp">
+    <ClCompile Include="Tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Views.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,16 +38,16 @@
     <ClInclude Include="Controllers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Views.h">
+    <ClInclude Include="List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="List.h">
+    <ClInclude Include="Tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Views.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
