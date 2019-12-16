@@ -6,46 +6,46 @@ void Controllers::home()
 {
     switch (views.home())
     {
-    case 0:
-        cout << "a du!!!! :v";
-        break;
-    case 1:
-        this->menu();
-        break;
-    case 2:
-        //this->desk();
-        break;
-    case 3:
-        //this->order();
-        break;
-    case 4:
-        //this->bill();
-        break;
-    default:
-        break;
+    //case 0:
+    //    cout << "a du!!!! :v";
+    //    break;
+    //case 1:
+    //   /* this->menu();
+    //    break;*/
+    //case 2:
+    //    //this->desk();
+    //    break;
+    //case 3:
+    //    //this->order();
+    //    break;
+    //case 4:
+    //    //this->bill();
+    //    break;
+    //default:
+    //    break;
     }
 }
-void Controllers::menu()
-{
-    switch (views.menu())
-    {
-    case 0:
-        this->home();
-        break;
-    case 1:
-        this->menuShow();
-        break;
-    case 2:
-        this->menuAdd();
-        break;
-    case 3:
-        this->menuRemove();
-        break;
-
-    default:
-        break;
-    }
-}
+//void Controllers::menu()
+//{
+//    switch (views.menu())
+//    {
+//    case 0:
+//        this->home();
+//        break;
+//    case 1:
+//        this->menuShow();
+//        break;
+//    case 2:
+//        this->menuAdd();
+//        break;
+//    case 3:
+//        this->menuRemove();
+//        break;
+//
+//    default:
+//        break;
+//    }
+//}
 //
 //void Controllers::desk()
 //{
@@ -104,25 +104,25 @@ void Controllers::menu()
 //    }
 //}
 
-void Controllers::menuShow()
-{
-    views.menuShow();
-    this->menu();
-};
-void Controllers::menuAdd()
-{
-    Menu temp;
-    temp = views.menuAdd();
-    //table.menu.insertFirst(temp);
-    this->menu();
-};
-void Controllers::menuRemove()
-{
-    Menu temp;
-    temp = views.menuRemove();
-    //table.menu.findOneAndRemove(temp);
-    this->menu();
-};
+//void Controllers::menuShow()
+//{
+//    views.menuShow();
+//    this->menu();
+//};
+//void Controllers::menuAdd()
+//{
+//    Menu temp;
+//    temp = views.menuAdd();
+//    //table.menu.insertFirst(temp);
+//    this->menu();
+//};
+//void Controllers::menuRemove()
+//{
+//    Menu temp;
+//    temp = views.menuRemove();
+//    //table.menu.findOneAndRemove(temp);
+//    this->menu();
+//};
 
 //void Controllers::deskShow()
 //{

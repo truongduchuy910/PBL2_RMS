@@ -1,17 +1,20 @@
 
 #ifndef CONTROLLERS_H
 #define CONTROLLERS_H
+#include<iostream>
+using namespace std;
 #include"Views.h"
-Views views;
+
 class Controllers;
 class Controllers
 {
 public:
+    Views views;
     void home();
-    void menu();
+    /*void menu();
     void menuShow();
     void menuAdd();
-    void menuRemove();
+    void menuRemove();*/
     //void deskShow();
     //void deskAdd();
     //void deskRemove();

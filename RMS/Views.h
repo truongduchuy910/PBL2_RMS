@@ -1,5 +1,6 @@
 #ifndef VIEWS_H
 #define VIEWS_H
+#include<iostream>
 #include "Tables.h"
 class Views;
 class Views
