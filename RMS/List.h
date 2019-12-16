@@ -7,16 +7,17 @@
 #include <sql.h>
 #include <iomanip>
 #include <string>
-#include "tables.h"
-
 using namespace std;
 
+class Menu;
 
 template <typename Data>
 class List;
 
 template <typename Data>
 class Node;
+
+
 
 template <typename Data>
 class Node
@@ -38,12 +39,34 @@ class List
 public:
 	List();
 	~List();
-	void insert(const Data&);
-	void findAndRemove(const Data&);
-	void print();
+	int insert(const Data&);
+	int findAndRemove(const Data&);
+	int print();
 
 private:
 	Node<Data>* start;
 	bool isEmpty();
 };
+class Menu
+{
+public:
+	int foodId;
+	string name;
+	double cost;
+	Menu()
+	{
+		this->foodId = 0;
+		this->cost = 0.0;
+	}
+	static void head()
+	{
+		cout << setw(6) << "foodId" << setw(6) << "name" << setw(6) << "cost" << endl;
+	}
+	const bool operator==(const Menu&);
+	friend ostream& operator<<(ostream&, const Menu&);
+	friend istream& operator>>(istream&, Menu&);
+};
 #endif
+
+
+
