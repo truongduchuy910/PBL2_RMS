@@ -1,3 +1,6 @@
+#ifndef VIEWS_H
+#define VIEWS_H
+#include "Tables.h"
 class Views;
 class Views
 {
@@ -8,12 +11,14 @@ public:
     Menu menuAdd();
     Menu menuRemove();
     int desk();
-    Desk deskAdd();
-    Desk deskRemove();
+   /* Desk deskAdd();
+    Desk deskRemove();*/
     int deskShow();
     int order();
-    Order orderAdd();
+    /*Order orderAdd();*/
     int bill();
-    Bill billAdd();
+    /*Bill billAdd();*/
     //int billShow();
 };
+extern Views views;
+#endif
