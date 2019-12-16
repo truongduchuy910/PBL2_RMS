@@ -14,18 +14,32 @@
     <ClCompile Include="RMS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Controllers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Views.cpp">
+=======
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tables.cpp">
+>>>>>>> bb03adad3188637be564d92ba1d43fa5198b3f9e
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Controllers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Views.h">
+=======
+    <ClInclude Include="List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tables.h">
+>>>>>>> bb03adad3188637be564d92ba1d43fa5198b3f9e
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
