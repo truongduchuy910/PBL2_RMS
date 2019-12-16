@@ -1,3 +1,7 @@
+
+#ifndef CONTROLLERS_H
+#define CONTROLLERS_H
+#include"Views.h"
 class Controllers;
 class Controllers
 {
@@ -14,8 +18,10 @@ public:
     void order();
     void orderAdd();
     void bill();
-    void billShow();
+    //void billShow();
     void billAdd();
     //void billOrder();
    // void billPayment();
 };
+extern Controllers controllers;
+#endif

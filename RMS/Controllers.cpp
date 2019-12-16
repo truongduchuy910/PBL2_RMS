@@ -1,3 +1,7 @@
+
+#ifndef CONTROLLERS_CPP
+#define CONTROLLERS_CPP
+#include"Controllers.h"
 void Controllers::home()
 {
     switch (views.home())
@@ -109,47 +113,48 @@ void Controllers::menuAdd()
 {
     Menu temp;
     temp = views.menuAdd();
-    table.menu.insertFirst(temp);
+    //table.menu.insertFirst(temp);
     controllers.menu();
 };
 void Controllers::menuRemove()
 {
     Menu temp;
     temp = views.menuRemove();
-    table.menu.findOneAndRemove(temp);
+    //table.menu.findOneAndRemove(temp);
     controllers.menu();
 };
 
-void Controllers::deskShow()
-{
-    views.deskShow();
-    controllers.desk();
-}
-void Controllers::deskAdd()
-{
-    Desk temp;
-    temp = views.deskAdd();
-    table.desk.insertFirst(temp);
-    controllers.desk();
-}
-void Controllers::deskRemove()
-{
-    Desk temp;
-    temp = views.deskRemove();
-    table.desk.findOneAndRemove(temp);
-    controllers.desk();
-}
-void Controllers::orderAdd()
-{
-    Order temp;
-    temp = views.orderAdd();
-    table.order.insertFirst(temp);
-    controllers.order();
-}
-void Controllers::billAdd()
-{
-    Bill temp;
-    temp = views.billAdd();
-    // table.bill.insertFirst(temp);
-    controllers.bill();
-}
+//void Controllers::deskShow()
+//{
+//    views.deskShow();
+//    controllers.desk();
+//}
+//void Controllers::deskAdd()
+//{
+//    Desk temp;
+//    temp = views.deskAdd();
+//    table.desk.insertFirst(temp);
+//    controllers.desk();
+//}
+//void Controllers::deskRemove()
+//{
+//    Desk temp;
+//    temp = views.deskRemove();
+//    table.desk.findOneAndRemove(temp);
+//    controllers.desk();
+//}
+//void Controllers::orderAdd()
+//{
+//    Order temp;
+//    temp = views.orderAdd();
+//    table.order.insertFirst(temp);
+//    controllers.order();
+//}
+//void Controllers::billAdd()
+//{
+//    Bill temp;
+//    temp = views.billAdd();
+//    // table.bill.insertFirst(temp);
+//    controllers.bill();
+//}
+#endif
