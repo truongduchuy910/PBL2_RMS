@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="RMS.cpp" />
     <ClCompile Include="Views.cpp" />
@@ -158,6 +159,15 @@
   <ItemGroup>
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Views.h" />
+=======
+    <ClCompile Include="List.cpp" />
+    <ClCompile Include="RMS.cpp" />
+    <ClCompile Include="Tables.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Tables.h" />
+>>>>>>> 7e1c9269f52fe9855b8b4dc250a364f1fbde5f1a
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
