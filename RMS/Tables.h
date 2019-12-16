@@ -10,10 +10,10 @@ public:
 	int foodId;
 	char name[50];
 	double cost;
-	Menu()
-	{
-		this->foodId = 0;
-		this->cost = 0.0;
+	Menu() {
+		foodId = 0;
+		cost = 0.0;
+		name[0] = '\0';
 	}
 	static void head()
 	{
@@ -22,5 +22,10 @@ public:
 	const bool operator==(const Menu&);
 	friend ostream& operator<<(ostream&, const Menu&);
 	friend istream& operator>>(istream&, Menu&);
+};
+class Desk
+{
+public:
+
 };
 #endif

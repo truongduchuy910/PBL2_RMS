@@ -38,28 +38,27 @@ Models::Models() {
 }
 
 int Models::get(List<Menu>& menus) {
+	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+	SQLINTEGER ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
-		SQLCHAR sqlVersion[SQL_RESULT_LEN];
-		SQLINTEGER ptrSqlVersion;
 		Menu temp;
-		Menu::head();
-		cout << "Quering..." << endl;
 		menus.empty();
+		cout << "success";
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
 			menus.insert(temp);
 		}
-		cout << "Quering done!" << endl;
 	}
 	else {
 		cout << "fail" << endl;
 	}
 	return true;
 }
-int Models::add(const Menu& menu) {
+int Models::insert(const Menu& menu) {
 	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
 	command += string(menu.name) + AND + to_string(menu.cost);
 	command += "')";
@@ -84,24 +83,28 @@ int Models::add(const Menu& menu) {
 	}
 	return id;
 }
-////void Models::menuRemove(const int& foodId) {
-////	string command = "DELETE FROM MENU WHERE FoodId = '" + to_string(foodId) + s;
-////	cout << command << endl;
-////	std::wstring stemp = s2ws(command);
-////	LPCWSTR result = stemp.c_str();
-////	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-////	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
-////	case SQL_SUCCESS:
-////		cout << "[DELETE] Successful!" << endl;
-////		break;
-////	case SQL_SUCCESS_WITH_INFO:
-////		cout << "[DELETE] Successful!" << endl;
-////		break;
-////	default:
-////		cout << "[DELETE] Fail!" << endl;
-////		break;
-////	}
-////}
+int Models::findAndRemove(const Menu& menu) {
+	cout << "SQL  [DELETE] ";
+	string command = "DELETE MENU WHERE FoodId ='";
+	command += to_string(menu.foodId);
+	command += "'";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
+		cout << "Success!" << endl;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		cout << "Success!" << endl;
+
+		break;
+	default:
+		cout << "Fail!" << endl;
+		break;
+	}
+	return true;
+}
 ////void Models::menuUpdate(const Menu& menu) {
 ////	string command = "UPDATE MENU SET FoodName = '";
 ////	command += string(menu.foodName) + s;

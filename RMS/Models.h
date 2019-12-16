@@ -27,7 +27,8 @@ public:
 	Models();
 	~Models() {};
 	int get(List<Menu>&);
-	int add(const Menu&);
+	int insert(const Menu&);
+	int findAndRemove(const Menu&);
 	//	//void menuShow(List<Menu>& menus);
 	//	//void menuAdd(const Menu&);
 	//	//void menuRemove(const int&);

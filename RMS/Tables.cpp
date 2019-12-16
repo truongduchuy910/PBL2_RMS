@@ -4,7 +4,7 @@
 #include "Tables.h"
 const bool Menu::operator==(const Menu& menu)
 {
-	if (this->foodId == menu.foodId)
+	if (this->foodId && menu.foodId && (this->foodId == menu.foodId))
 	{
 		return true;
 	}

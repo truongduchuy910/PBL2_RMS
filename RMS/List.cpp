@@ -30,7 +30,7 @@ List<Data>::~List()
 		Node<Data>* currentNode = start;
 		Node<Data>* temp;
 
-		while (currentNode != 0)
+		while (currentNode != NULL)
 		{
 			temp = currentNode;
 			currentNode = currentNode->next;
@@ -50,38 +50,50 @@ bool List<Data>::isEmpty()
 template <typename Data>
 int List<Data>::insert(const Data& dataIn)
 {
+	cout << "LIST [INSERT] ";
 	if (isEmpty())
 	{
 		Node<Data>* newNode = new Node<Data>(dataIn);
 		start = newNode;
 		this->length++;
+		cout << "Success" << endl;
+		return true;
 	}
 	else
 	{
-
 		Node<Data>* newNode = new Node<Data>(dataIn);
 		newNode->next = start;
 		start = newNode;
 		this->length++;
-
+		cout << "Success" << endl;
+		return true;
 	}
-	return true;
+	cout << "Fail" << endl;
+	return false;
 }
 
 template <typename Data>
 int List<Data>::findAndRemove(const Data& dataIn)
 {
+	cout << "LIST [DELETE] ";
 	Node<Data>* temp = this->start;
-	while (temp != NULL && !(temp->data == dataIn))
-	{
-		temp = temp->next;
-	}
-	if (temp != NULL)
-	{
+	if (start != NULL && (start->data == dataIn)) {
 		start = start->next;
 		this->length--;
+		cout << "Success" << endl;
+		return true;
 
 	}
+	else {
+		while ((temp->next != NULL) && !(temp->next->data == dataIn)) {
+			temp = temp->next;
+		}
+		temp->next = temp->next->next;
+		cout << "Success" << endl;
+		return true;
+
+	}
+	cout << "Fail" << endl;
 	return true;
 }
 

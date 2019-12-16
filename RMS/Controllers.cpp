@@ -14,10 +14,10 @@ void Controllers::home()
 	case 1:
 		this->menu();
 		break;
-		/*case 2:
+		case 2:
 			this->desk();
 			break;
-		case 3:
+		/*case 3:
 			this->order();
 			break;
 		case 4:
@@ -59,7 +59,7 @@ void Controllers::menuShow()
 void Controllers::menuAdd()
 {
 	Menu temp = views.menuAdd();
-	int id = models.add(temp);
+	int id = models.insert(temp);
 	if (id)
 	{
 		temp.foodId = id;
@@ -72,30 +72,31 @@ void Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
 	menus.findAndRemove(temp);
+	models.findAndRemove(temp);
 	this->menu();
 }
 
-//void Controllers::desk()
-//{
-//    switch (views.desk())
-//    {
-//    case 0:
-//        this->home();
-//        break;
-//    case 1:
-//        this->deskShow();
-//        break;
-//    case 2:
-//        this->deskAdd();
-//        break;
-//    case 3:
-//        this->deskRemove();
-//        break;
-//    default:
-//        break;
-//    }
-//}
-//
+void Controllers::desk()
+{
+    switch (views.desk())
+    {
+    /*case 0:
+        this->home();
+        break;
+    case 1:
+        this->deskShow();
+        break;
+    case 2:
+        this->deskAdd();
+        break;
+    case 3:
+        this->deskRemove();
+        break;
+    default:
+        break;*/
+    }
+}
+
 //void Controllers::order()
 //{
 //    switch (views.order())
