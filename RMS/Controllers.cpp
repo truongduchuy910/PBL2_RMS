@@ -6,47 +6,65 @@ void Controllers::home()
 {
     switch (views.home())
     {
-    //case 0:
-    //    cout << "a du!!!! :v";
-    //    break;
-    //case 1:
-    //   /* this->menu();
-    //    break;*/
-    //case 2:
-    //    //this->desk();
-    //    break;
-    //case 3:
-    //    //this->order();
-    //    break;
-    //case 4:
-    //    //this->bill();
-    //    break;
-    //default:
-    //    break;
+    case 0:
+        cout << "a du!!!! :v";
+        break;
+    case 1:
+        this->menu();
+        break;
+    /*case 2:
+        this->desk();
+        break;
+    case 3:
+        this->order();
+        break;
+    case 4:
+        this->bill();
+        break;*/
+    default:
+        break;
     }
 }
-//void Controllers::menu()
-//{
-//    switch (views.menu())
-//    {
-//    case 0:
-//        this->home();
-//        break;
-//    case 1:
-//        this->menuShow();
-//        break;
-//    case 2:
-//        this->menuAdd();
-//        break;
-//    case 3:
-//        this->menuRemove();
-//        break;
-//
-//    default:
-//        break;
-//    }
-//}
-//
+void Controllers::menu()
+{
+    switch (views.menu())
+    {
+    case 0:
+        this->home();
+        break;
+    case 1:
+        this->menuShow();
+        break;
+    case 2:
+        this->menuAdd();
+        break;
+    case 3:
+        this->menuRemove();
+        break;
+
+    default:
+        break;
+    }
+}
+
+void Controllers::menuShow()
+{
+    views.menuShow();
+    this->menu();
+}
+
+void Controllers::menuAdd()
+{
+    Menu temp = views.menuAdd();
+    db.menus.insert(temp);
+    this->menu();
+}
+
+void Controllers::menuRemove()
+{
+    views.menuRemove();
+}
+
 //void Controllers::desk()
 //{
 //    switch (views.desk())

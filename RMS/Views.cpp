@@ -53,6 +53,9 @@ int Views::menuShow()
 Menu Views::menuAdd()
 {
     Menu newMenu;
+    cout << endl
+        << "=============== MENU ADD" << endl;
+    cout << "Input values:" << endl;
     cin >> newMenu;
     return newMenu;
 }

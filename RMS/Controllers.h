@@ -2,19 +2,25 @@
 #ifndef CONTROLLERS_H
 #define CONTROLLERS_H
 #include<iostream>
-using namespace std;
+#include"List.h"
+#include"Tables.h"
 #include"Views.h"
+using namespace std;
 
 class Controllers;
 class Controllers
 {
 public:
+    class
+    {
+        List<Menu> menus;
+    }db;
     Views views;
     void home();
-    /*void menu();
+    void menu();
     void menuShow();
     void menuAdd();
-    void menuRemove();*/
+    void menuRemove();
     //void deskShow();
     //void deskAdd();
     //void deskRemove();
