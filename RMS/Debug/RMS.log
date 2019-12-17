@@ -1,9 +1,0 @@
-﻿  List.cpp
-  Models.cpp
-D:\Github\RMS\RMS\Models.cpp(43,10): warning C4101: 'sqlVersion': unreferenced local variable
-D:\Github\RMS\RMS\Models.cpp(65,13): warning C4101: 'ptrSqlVersion': unreferenced local variable
-D:\Github\RMS\RMS\Models.cpp(64,10): warning C4101: 'sqlVersion': unreferenced local variable
-  RMS.cpp
-  Generating Code...
-D:\Github\RMS\RMS\Models.cpp(94,10): warning C4101: 'sqlVersion': unreferenced local variable
-  RMS.vcxproj -> D:\Github\RMS\RMS\Debug\RMS.exe
