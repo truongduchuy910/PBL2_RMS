@@ -128,12 +128,12 @@ int List<Data>::empty() {
 }
 template <typename Data>
 Data List<Data>::operator[](int i) {
-	Data* temp = this->start;
+	Node<Data>* temp = this->start;
 	while (i && temp != NULL) {
 		temp = temp->next;
 		i--;
 	}
-	return *temp;
+	return temp->data;
 };
 
 #endif
