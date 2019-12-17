@@ -17,7 +17,7 @@ Models::Models() {
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
-		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=DESKTOP-H0668TV;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=192.168.97.253;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
 		SQL_NTS,
 		retconstring,
 		1024,
@@ -39,6 +39,7 @@ Models::Models() {
 
 
 int Models::get(List<Menu>& menus) {
+	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
@@ -61,6 +62,7 @@ int Models::get(List<Menu>& menus) {
 }
 
 int Models::get(List<Desk>& desks) {
+	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
@@ -82,6 +84,7 @@ int Models::get(List<Desk>& desks) {
 }
 
 int Models::get(List<Bill>& bills) {
+	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
@@ -105,6 +108,7 @@ int Models::get(List<Bill>& bills) {
 }
 
 int Models::get(List<AddFood>& addFoods) {
+	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
