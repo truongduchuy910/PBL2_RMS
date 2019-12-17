@@ -17,7 +17,7 @@ Models::Models() {
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
-		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=NGUYENVU;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=123",
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=DESKTOP-H0668TV;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
 		SQL_NTS,
 		retconstring,
 		1024,
@@ -46,7 +46,7 @@ int Models::get(List<Menu>& menus) {
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
 		Menu temp;
 		menus.empty();
-		cout << "success";
+		cout << "success" << endl;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -68,7 +68,7 @@ int Models::get(List<Desk>& desks) {
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM DESK", SQL_NTS)) {
 		Desk temp;
 		desks.empty();
-		cout << "success";
+		cout << "success" << endl;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.available, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -89,7 +89,7 @@ int Models::get(List<Bill>& bills) {
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM BILL", SQL_NTS)) {
 		Bill temp;
 		bills.empty();
-		cout << "success";
+		cout << "success" << endl;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -112,7 +112,7 @@ int Models::get(List<AddFood>& addFoods) {
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM ADDFOOD", SQL_NTS)) {
 		AddFood temp;
 		addFoods.empty();
-		cout << "success";
+		cout << "success" << endl;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.addfoodId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);

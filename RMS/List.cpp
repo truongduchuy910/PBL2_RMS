@@ -88,7 +88,8 @@ int List<Data>::findAndRemove(const Data& dataIn)
 		while ((temp->next != NULL) && !(temp->next->data == dataIn)) {
 			temp = temp->next;
 		}
-		temp->next = temp->next->next;
+		if (temp->next != NULL)
+			temp->next = temp->next->next;
 		cout << "Success" << endl;
 		return true;
 
