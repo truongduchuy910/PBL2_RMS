@@ -1,0 +1,10 @@
+1. Khi nhập order vào ADDFOOD thì bên table BILL sẽ tự động 
+cộng thêm số tiền vào BILL.Total dựa trên số lượng món đã gọi
+Điều kiện: BILL.BillID = ADDFOOD.BillID and 
+           ADDFOOD.FoodID = Menu.FoodID
+---------->Cái này chưa xong
+2. Khi Update trạng thái Payment trên table BILL thì DeskID tương ứng ở DESK sẽ tự động đưa về 'True'(1) ----> Đã xong
+Điều kiện: BILL.DeskID = DESK.DeskID
+3. Khi thêm (Insert) 1 mã bàn vào 1 hóa đơn thì tự động đưa về giá trị False(2) ------> Đã xong
+
+Problem:...Trao đổi sau....
