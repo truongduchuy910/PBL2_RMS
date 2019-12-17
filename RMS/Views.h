@@ -17,10 +17,10 @@ public:
     Desk deskRemove();*/
     void deskShow(List<Desk>&);
     /*int order();
-    Order orderAdd();
+    AddFood orderAdd();*/
     int bill();
-    Bill billAdd();
-    int billShow();*/
+    Bill billAdd(List<Desk>&);
+    void billShow();
 };
 //Views views;
 #endif

@@ -93,6 +93,37 @@ void Views::deskShow(List<Desk> &desks)
 		<< "=============== DESK SHOW" << endl;*/
        
 }
+//int Views::order()
+//{
+//    cout << endl
+//        << "=============== order control" << endl;
+//
+//    int n;
+//    do
+//    {
+//        cout << "0. back" << endl;
+//        cout << "1. add" << endl;
+//        cout << "choose your option [0 or 1]: ";
+//        cin >> n;
+//    } while (n < 0 || n > 1);
+//
+//    return n;
+//};
+//AddFood Views::orderAdd()
+//{
+//    cout << endl
+//        << "=============== ORDER ADD" << endl;
+//
+//    AddFood newOrder;
+//	
+//    cout << "deskId: ";
+//    cin >> newOrder.deskId;
+//    //views.menuShow();
+//    cout << "foodId: ";
+//    cin >> newOrder.foodId;
+//    return newOrder;
+//}
+
 //Desk Views::deskAdd()
 //{
 //    cout << endl
@@ -107,77 +138,45 @@ void Views::deskShow(List<Desk> &desks)
 //    cin >> newDesk;
 //    return newDesk;
 //}
-//int Views::order()
-//{
-//    cout << endl
-//        << "=============== ORDER CONTROL" << endl;
-//
-//    int n;
-//    do
-//    {
-//        cout << "0. back" << endl;
-//        cout << "1. add" << endl;
-//        cout << "Choose your option [0 or 1]: ";
-//        cin >> n;
-//    } while (n < 0 || n > 1);
-//
-//    return n;
-//};
-//Order Views::orderAdd()
-//{
-//    cout << endl
-//        << "=============== ORDER ADD" << endl;
-//    Order newOrder;
-//    views.deskShow();
-//    cout << "deskId: ";
-//    cin >> newOrder.deskId;
-//    views.menuShow();
-//    cout << "foodId: ";
-//    cin >> newOrder.foodId;
-//    return newOrder;
-//}
-//int Views::bill()
-//{
-//
-//    cout << endl
-//        << "=============== BILL CONTROL" << endl;
-//
-//    int n;
-//    do
-//    {
-//        cout << "0. back" << endl;
-//        cout << "1. add" << endl;
-//        cout << "2. order" << endl;
-//        cout << "3. payment" << endl;
-//        cout << "Choose your option [0-3]: ";
-//        cin >> n;
-//    } while (n < 0 || n > 8);
-//
-//    return n;
-//};
-//Bill Views::billAdd()
-//{
-//    cout << endl
-//        << "=============== BILL ADD" << endl;
-//    views.deskShow();
-//    Bill newBill;
-//    cout << "billId:" << endl;
-//
-//    cin >> newBill.billId;
-//    cout << "deskId:" << endl;
-//
-//    cin >> newBill.deskId;
-//
-//    return newBill;
-//}
-/*int Views::billShow()
+int Views::bill()
+{
+
+    cout << endl
+        << "=============== BILL CONTROL" << endl;
+
+    int n;
+    do
+    {
+        cout << "0. back" << endl;
+        cout << "1. add" << endl;
+        cout << "2. order" << endl;
+        cout << "3. payment" << endl;
+        cout << "Choose your option [0-3]: ";
+        cin >> n;
+    } while (n < 0 || n > 8);
+
+    return n;
+};
+Bill Views::billAdd(List<Desk> &desks)
+{
+    cout << endl
+        << "=============== BILL ADD" << endl;
+    desks.print();
+    Bill newBill;
+    cout << "billId:" << endl;
+
+    cin >> newBill.billId;
+    cout << "deskId:" << endl;
+
+    cin >> newBill.deskId;
+
+    return newBill;
+}
+void Views::billShow()
 {
 	cout << endl
-		 << "=============== BILL SHOW" << endl
-		 << "deskId status" << endl;
-	for (int i = 0; i < table.desk.length; i++)
-	{
-		cout << table.desk[i];
-	}
-}*/
+		<< "=============== BILL SHOW" << endl;
+	Desk::head();
+	
+}
 #endif

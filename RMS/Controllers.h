@@ -28,9 +28,10 @@ public:
 	void desk();
 	//void order();
 	//void orderAdd();
-	//void bill();
-	//void billShow();
-	//void billOrder();
-	//void billPayment();
+	void bill();
+	void billShow();
+	void billAdd();
+	void billOrder();
+	void billPayment();
 };
 #endif

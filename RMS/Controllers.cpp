@@ -21,12 +21,12 @@ void Controllers::home()
 	case 2:
 		this->desk();
 		break;
-		/*case 3:
-			this->order();
-			break;
-		case 4:
-			this->bill();
-			break;*/
+	/*case 3:
+		this->order();
+		break;*/
+	case 4:
+		this->bill();
+		break;
 	default:
 		break;
 	}
@@ -120,48 +120,46 @@ void Controllers::deskShow()
 //        break;
 //    }
 //}
-//
-//void Controllers::bill()
+//void Controllers::orderAdd()
 //{
-//    switch (views.bill())
-//    {
-//    case 0:
-//        this->home();
-//        break;
-//    case 1:
-//        this->billAdd();
-//        break;
-//    case 2:
-//        //this->billOrder();
-//        break;
-//    case 3:
-//        // this->billPayment();
-//        break;
-//    default:
-//        break;
-//    }
+//	AddFood temp = views.orderAdd();
+//	int id = models.insert(temp);
+//	if (id)
+//	{
+//		temp.foodId = id;
+//		menus.insert(temp);
+//	}
+//	this->menu();
 //}
-
-//void Controllers::menuShow()
-//{
-//    views.menuShow();
-//    this->menu();
-//};
-//void Controllers::menuAdd()
-//{
-//    Menu temp;
-//    temp = views.menuAdd();
-//    //table.menu.insertFirst(temp);
-//    this->menu();
-//};
-//void Controllers::menuRemove()
-//{
-//    Menu temp;
-//    temp = views.menuRemove();
-//    //table.menu.findOneAndRemove(temp);
-//    this->menu();
-//};
-
+//
+void Controllers::bill()
+{
+    switch (views.bill())
+    {
+    case 0:
+        this->home();
+        break;
+    case 1:
+        this->billAdd();
+        break;
+    case 2:
+        //this->billOrder();
+        break;
+    case 3:
+        // this->billPayment();
+        break;
+    default:
+        break;
+    }
+}
+void Controllers::billAdd()
+{
+	List<Desk> availabledesk;
+    Bill temp;
+    temp = views.billAdd();
+    bills.insert(temp);
+    this->bill();
+}
 //void Controllers::deskShow()
 //{
 //    views.deskShow();
@@ -188,11 +186,5 @@ void Controllers::deskShow()
 //    table.order.insertFirst(temp);
 //    this->order();
 //}
-//void Controllers::billAdd()
-//{
-//    Bill temp;
-//    temp = views.billAdd();
-//    // table.bill.insertFirst(temp);
-//    this->bill();
-//}
+
 #endif
