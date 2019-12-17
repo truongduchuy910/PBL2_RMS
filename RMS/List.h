@@ -39,6 +39,7 @@ public:
 	int findAndRemove(const Data&);
 	int print();
 	int empty();
+	Data operator[](int);
 
 private:
 	Node<Data>* start;

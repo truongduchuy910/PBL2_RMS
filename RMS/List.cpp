@@ -88,10 +88,12 @@ int List<Data>::findAndRemove(const Data& dataIn)
 		while ((temp->next != NULL) && !(temp->next->data == dataIn)) {
 			temp = temp->next;
 		}
-		if (temp->next != NULL)
+		if (temp->next != NULL) {
+			this->length--;
 			temp->next = temp->next->next;
-		cout << "Success" << endl;
-		return true;
+			cout << "Success" << endl;
+			return true;
+		}
 
 	}
 	cout << "Fail" << endl;
@@ -124,4 +126,14 @@ int List<Data>::empty() {
 	this->start = NULL;
 	return true;
 }
+template <typename Data>
+Data List<Data>::operator[](int i) {
+	Data* temp = this->start;
+	while (i && temp != NULL) {
+		temp = temp->next;
+		i--;
+	}
+	return *temp;
+};
+
 #endif
