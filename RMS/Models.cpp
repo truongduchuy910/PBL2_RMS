@@ -41,7 +41,7 @@ int Models::get(List<Menu>& menus) {
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
-	SQLINTEGER ptrSqlVersion;
+	SQLLEN ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
 		Menu temp;
 		menus.empty();
@@ -51,28 +51,6 @@ int Models::get(List<Menu>& menus) {
 			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
 			menus.insert(temp);
-		}
-	}
-	else {
-		cout << "fail" << endl;
-	}
-	return true;
-}
-int Models::get(List<Desk>& desks) {
-	cout << "SQL  [SELECT] ";
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLCHAR sqlVersion[SQL_RESULT_LEN];
-	SQLINTEGER ptrSqlVersion;
-	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
-		Desk temp;
-		desks.empty();
-		cout << "success";
-		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
-		/*	
-			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);*/
-			desks.insert(temp);
 		}
 	}
 	else {
@@ -92,7 +70,7 @@ int Models::insert(const Menu& menu) {
 	//GET ID OF THIS RECORD
 	int id = 0;
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
-	SQLINTEGER ptrSqlVersion;
+	SQLLEN ptrSqlVersion;
 	command = "SELECT FoodID FROM MENU WHERE FoodName = '";
 	command += string(menu.name);
 	command += "'";

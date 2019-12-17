@@ -27,15 +27,8 @@ public:
 	Models();
 	~Models() {};
 	int get(List<Menu>&);
-	int get(List<Desk>&);
 	int insert(const Menu&);
 	int findAndRemove(const Menu&);
-	//	//void menuShow(List<Menu>& menus);
-	//	//void menuAdd(const Menu&);
-	//	//void menuRemove(const int&);
-	//	//void menuUpdate(const Menu&);
-	//
-		wstring s2ws(const string& s);
-	
+	wstring s2ws(const string& s);
 };
 #endif // !MODEL_H
