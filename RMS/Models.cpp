@@ -17,7 +17,7 @@ Models::Models() {
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
-		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=localhost;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=NGUYENVU;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=123",
 		SQL_NTS,
 		retconstring,
 		1024,

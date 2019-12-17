@@ -28,4 +28,25 @@ istream& operator>>(istream& is, Menu& menu)
 	is >> menu.cost;
 	return is;
 }
+const bool Desk::operator==(const Desk& desk)
+{
+	return (this->available && desk.available);
+}
+ostream& operator<<(ostream& os, const Desk& desk)
+{
+	
+		os << setw(7) << desk.deskId;
+		if (desk.available == 1)
+			os << setw(12) << "true";
+		else
+			os << setw(12) << "false";
+	return os;
+}
+istream& operator>>(istream& is, Desk& desk)
+{
+	cout << "deskId: ";
+	is.ignore();
+	is >> desk.deskId;
+	return is;
+}
 #endif

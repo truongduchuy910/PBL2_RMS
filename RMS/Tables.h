@@ -35,9 +35,11 @@ public:
 	}
 	static void head()
 	{
-		cout << setw(7) << " deskId" << setw(7) << "available" << endl;
+		cout << setw(7) << " deskId" << setw(12) << "available" << endl;
 	}
-	
+	const bool operator==(const Desk&);
+	friend ostream& operator<<(ostream&, const Desk&);
+	friend istream& operator>>(istream&, Desk&);
 };
 class Bill
 {
