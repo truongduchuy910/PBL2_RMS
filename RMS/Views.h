@@ -14,8 +14,8 @@ public:
 	
     int desk();
     /*Desk deskAdd();
-    Desk deskRemove();
-    int deskShow();*/
+    Desk deskRemove();*/
+    void deskShow(List<Desk>&);
     /*int order();
     Order orderAdd();
     int bill();

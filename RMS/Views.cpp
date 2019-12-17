@@ -85,16 +85,14 @@ int Views::desk()
 
     return n;
 };
-//int Views::deskShow()
-//{
-//    cout << endl
-//        << "=============== DESK SHOW" << endl
-//        << "deskId status" << endl;
-//    for (int i = 0; i < table.desk.length; i++)
-//    {
-//        cout << table.desk[i];
-//    }
-//}
+void Views::deskShow(List<Desk> &desks)
+{
+	Desk::head();
+	desks.print();
+	/*cout << endl
+		<< "=============== DESK SHOW" << endl;*/
+       
+}
 //Desk Views::deskAdd()
 //{
 //    cout << endl
