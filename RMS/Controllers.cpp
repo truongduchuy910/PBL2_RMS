@@ -154,9 +154,16 @@ void Controllers::bill()
 }
 void Controllers::billAdd()
 {
-	List<Desk> availabledesk;
+	List<Desk> availableDesk;
+	for (int i = 0; i < desks.length; i++)
+	{
+		if (desks[i].available == true)
+		{
+			availableDesk.insert(desks[i]);
+		}
+	}
     Bill temp;
-    temp = views.billAdd();
+    temp = views.billAdd(availableDesk);
     bills.insert(temp);
     this->bill();
 }

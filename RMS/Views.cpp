@@ -161,6 +161,8 @@ Bill Views::billAdd(List<Desk> &desks)
 {
     cout << endl
         << "=============== BILL ADD" << endl;
+	cout << "Available Table" << endl;
+	Desk::head();
     desks.print();
     Bill newBill;
     cout << "billId:" << endl;
