@@ -3,6 +3,7 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
+	cout << "get data";
 	models.get(menus);
 	models.get(desks);
 	models.get(bills);
@@ -83,13 +84,13 @@ void Controllers::desk()
 {
 	switch (views.desk())
 	{
-		/*case 0:
+		case 0:
 			this->home();
 			break;
 		case 1:
 			this->deskShow();
 			break;
-		case 2:
+		/*case 2:
 			this->deskAdd();
 			break;
 		case 3:
@@ -99,7 +100,12 @@ void Controllers::desk()
 			break;*/
 	}
 }
-
+void Controllers::deskShow()
+{
+    views.deskShow(desks);
+	
+    this->desk();
+}
 //void Controllers::order()
 //{
 //    switch (views.order())
