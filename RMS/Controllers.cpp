@@ -4,6 +4,9 @@
 #include"Controllers.h"
 void Controllers::init() {
 	models.get(menus);
+	models.get(desks);
+	models.get(bills);
+	models.get(addFoods);
 }
 void Controllers::home()
 {
@@ -14,9 +17,9 @@ void Controllers::home()
 	case 1:
 		this->menu();
 		break;
-		case 2:
-			this->desk();
-			break;
+	case 2:
+		this->desk();
+		break;
 		/*case 3:
 			this->order();
 			break;
@@ -78,23 +81,23 @@ void Controllers::menuRemove()
 
 void Controllers::desk()
 {
-    switch (views.desk())
-    {
-    /*case 0:
-        this->home();
-        break;
-    case 1:
-        this->deskShow();
-        break;
-    case 2:
-        this->deskAdd();
-        break;
-    case 3:
-        this->deskRemove();
-        break;
-    default:
-        break;*/
-    }
+	switch (views.desk())
+	{
+		/*case 0:
+			this->home();
+			break;
+		case 1:
+			this->deskShow();
+			break;
+		case 2:
+			this->deskAdd();
+			break;
+		case 3:
+			this->deskRemove();
+			break;
+		default:
+			break;*/
+	}
 }
 
 //void Controllers::order()

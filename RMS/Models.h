@@ -27,6 +27,9 @@ public:
 	Models();
 	~Models() {};
 	int get(List<Menu>&);
+	int get(List<Desk>&);
+	int get(List<Bill>&);
+	int get(List<AddFood>&);
 	int insert(const Menu&);
 	int findAndRemove(const Menu&);
 	wstring s2ws(const string& s);

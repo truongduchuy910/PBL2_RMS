@@ -37,6 +37,7 @@ Models::Models() {
 	cout << "Connecting 100%... Ready to query." << endl;
 }
 
+
 int Models::get(List<Menu>& menus) {
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
@@ -58,6 +59,76 @@ int Models::get(List<Menu>& menus) {
 	}
 	return true;
 }
+
+int Models::get(List<Desk>& desks) {
+	cout << "SQL  [SELECT] ";
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+	SQLLEN ptrSqlVersion;
+	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM DESK", SQL_NTS)) {
+		Desk temp;
+		desks.empty();
+		cout << "success";
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.available, SQL_RESULT_LEN, &ptrSqlVersion);
+			desks.insert(temp);
+		}
+	}
+	else {
+		cout << "fail" << endl;
+	}
+	return true;
+}
+
+int Models::get(List<Bill>& bills) {
+	cout << "SQL  [SELECT] ";
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+	SQLLEN ptrSqlVersion;
+	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM BILL", SQL_NTS)) {
+		Bill temp;
+		bills.empty();
+		cout << "success";
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 3, SQL_INTEGER, &temp.payment, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 4, SQL_DOUBLE, &temp.total, SQL_RESULT_LEN, &ptrSqlVersion);
+			bills.insert(temp);
+		}
+	}
+	else {
+		cout << "fail" << endl;
+	}
+	return true;
+}
+
+int Models::get(List<AddFood>& addFoods) {
+	cout << "SQL  [SELECT] ";
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+	SQLLEN ptrSqlVersion;
+	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM ADDFOOD", SQL_NTS)) {
+		AddFood temp;
+		addFoods.empty();
+		cout << "success";
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.addfoodId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 3, SQL_INTEGER, &temp.quantity, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 4, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 5, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
+			addFoods.insert(temp);
+		}
+	}
+	else {
+		cout << "fail" << endl;
+	}
+	return true;
+}
+
+
 int Models::insert(const Menu& menu) {
 	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
 	command += string(menu.name) + AND + to_string(menu.cost);
@@ -83,6 +154,35 @@ int Models::insert(const Menu& menu) {
 	}
 	return id;
 }
+
+
+//int Models::insert(const Menu& menu) {
+//	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
+//	command += string(menu.name) + AND + to_string(menu.cost);
+//	command += "')";
+//	std::wstring stemp = s2ws(command);
+//	LPCWSTR result = stemp.c_str();
+//	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+//	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+//
+//	//GET ID OF THIS RECORD
+//	int id = 0;
+//	SQLCHAR sqlVersion[SQL_RESULT_LEN];
+//	SQLLEN ptrSqlVersion;
+//	command = "SELECT FoodID FROM MENU WHERE FoodName = '";
+//	command += string(menu.name);
+//	command += "'";
+//	stemp = s2ws(command);
+//	result = stemp.c_str();
+//	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+//	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+//	if (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+//		SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &id, SQL_RESULT_LEN, &ptrSqlVersion);
+//	}
+//	return id;
+//}
+
+
 int Models::findAndRemove(const Menu& menu) {
 	cout << "SQL  [DELETE] ";
 	string command = "DELETE MENU WHERE FoodId ='";

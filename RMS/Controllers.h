@@ -11,6 +11,9 @@ class Controllers
 {
 public:
 	List<Menu> menus;
+	List<Desk> desks;
+	List<Bill> bills;
+	List<AddFood> addFoods;
 	Views views;
 	Models models;
 	void init();
