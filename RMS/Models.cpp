@@ -134,58 +134,48 @@ int Models::get(List<AddFood>& addFoods) {
 
 
 int Models::insert(const Menu& menu) {
-	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
-	command += string(menu.name) + AND + to_string(menu.cost);
+	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
+	command += to_string(menu.foodId)
+		+ AND + string(menu.name)
+		+ AND + to_string(menu.cost);
 	command += "')";
 	std::wstring stemp = s2ws(command);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-
-	//GET ID OF THIS RECORD
-	int id = 0;
-	SQLCHAR sqlVersion[SQL_RESULT_LEN];
-	SQLLEN ptrSqlVersion;
-	command = "SELECT FoodID FROM MENU WHERE FoodName = '";
-	command += string(menu.name);
-	command += "'";
-	stemp = s2ws(command);
-	result = stemp.c_str();
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	if (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
-		SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &id, SQL_RESULT_LEN, &ptrSqlVersion);
-	}
-	return id;
+	return true;
 }
 
+int Models::insert(const Bill& bill) {
+	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
+	command += to_string(bill.billId)
+		+ AND + to_string(bill.deskId)
+		+ AND + to_string(bill.payment)
+		+ AND + to_string(bill.total);
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
 
-//int Models::insert(const Menu& menu) {
-//	string command = "INSERT INTO MENU (FoodName, Cost) VALUES('";
-//	command += string(menu.name) + AND + to_string(menu.cost);
-//	command += "')";
-//	std::wstring stemp = s2ws(command);
-//	LPCWSTR result = stemp.c_str();
-//	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-//	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-//
-//	//GET ID OF THIS RECORD
-//	int id = 0;
-//	SQLCHAR sqlVersion[SQL_RESULT_LEN];
-//	SQLLEN ptrSqlVersion;
-//	command = "SELECT FoodID FROM MENU WHERE FoodName = '";
-//	command += string(menu.name);
-//	command += "'";
-//	stemp = s2ws(command);
-//	result = stemp.c_str();
-//	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-//	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-//	if (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
-//		SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &id, SQL_RESULT_LEN, &ptrSqlVersion);
-//	}
-//	return id;
-//}
+}
 
+int Models::insert(const AddFood& addFood) {
+	string command = "INSERT INTO ADDFOOD (AddfoodId, FoodId, Quantity, DeskId, BillId) VALUES('";
+	command += to_string(addFood.addfoodId)
+		+ AND + to_string(addFood.foodId)
+		+ AND + to_string(addFood.quantity)
+		+ AND + to_string(addFood.deskId)
+		+ AND + to_string(addFood.billId);
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+
+}
 
 int Models::findAndRemove(const Menu& menu) {
 	cout << "SQL  [DELETE] ";

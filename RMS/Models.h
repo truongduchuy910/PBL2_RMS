@@ -7,6 +7,8 @@
 #include <sql.h>
 #include <string>
 #include <cstring>
+#include <time.h>
+#include <cstdlib>
 #include "Tables.h"
 #include "List.h"
 
@@ -31,6 +33,8 @@ public:
 	int get(List<Bill>&);
 	int get(List<AddFood>&);
 	int insert(const Menu&);
+	int insert(const Bill&);
+	int insert(const AddFood&);
 	int findAndRemove(const Menu&);
 	wstring s2ws(const string& s);
 };
