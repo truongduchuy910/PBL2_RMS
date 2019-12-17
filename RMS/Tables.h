@@ -26,6 +26,30 @@ public:
 class Desk
 {
 public:
-
+	int deskId;
+	int available;
+	Desk()
+	{
+		deskId = 0;
+		available = false;
+	}
+	static void head()
+	{
+		cout << setw(7) << " deskId" << setw(7) << "available" << endl;
+	}
+	
 };
+class Bill
+{
+public:
+	int billId, deskId;
+	int payment;
+	double total;
+};
+class AddFood
+{
+public:
+	int addfoodId, foodId, quantity, deskId, billId;
+};
+
 #endif
