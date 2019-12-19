@@ -12,7 +12,7 @@ int Views::home()
 		cout << "0. exit" << endl;
 		cout << "1. menu" << endl;
 		cout << "2. desk" << endl;
-		cout << "3. order" << endl;
+		cout << "3. addFood" << endl;
 		cout << "4. bill" << endl;
 		cout << "Choose your option [0-4]: ";
 		cin >> n;
@@ -109,17 +109,20 @@ int Views::addFood()
 
 	return n;
 };
-AddFood Views::orderAdd()
+AddFood Views::addFoodAdd()
 {
 	cout << endl
-		<< "=============== ORDER ADD" << endl;
+		<< "=============== ADD FOOD" << endl;
 
 	AddFood newAddFood;
-	cout << "deskId: ";
-	cin >> newAddFood.deskId;
+	/*cout << "deskId: ";
+	cin >> newAddFood.deskId;*/
 	//views.menuShow();
 	cout << "foodId: ";
 	cin >> newAddFood.foodId;
+	cout << endl;
+	cout << "billId: ";
+	cin >> newAddFood.billId;
 	return newAddFood;
 }
 

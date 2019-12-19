@@ -24,7 +24,7 @@ public:
     Desk deskRemove();*/
     void deskShow(List<Desk>&);
     int addFood();
-    AddFood orderAdd();
+    AddFood addFoodAdd();
     int bill();
     Bill billAdd(List<Desk>&);
     void billShow();

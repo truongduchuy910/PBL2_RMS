@@ -113,16 +113,16 @@ void Controllers::addFood()
 		this->home();
 		break;
 	case 1:
-		this->orderAdd();
+		this->addFoodAdd();
 		break;
 	default:
 		break;
 	}
 }
-void Controllers::orderAdd()
+void Controllers::addFoodAdd()
 {
-	AddFood temp = views.orderAdd();
-	int id = models.insert(temp);
+	AddFood temp = views.addFoodAdd();
+	addFoods.insert(temp);
 	this->addFood();
 }
 
@@ -184,10 +184,10 @@ void Controllers::billPayment()
 //    table.desk.findOneAndRemove(temp);
 //    this->desk();
 //}
-//void Controllers::orderAdd()
+//void Controllers::addFoodAdd()
 //{
 //    Order temp;
-//    temp = views.orderAdd();
+//    temp = views.addFoodAdd();
 //    table.order.insertFirst(temp);
 //    this->order();
 //}
