@@ -26,8 +26,8 @@ public:
 	void deskAdd();
 	void deskRemove();
 	void desk();
-	//void order();
-	//void orderAdd();
+	void addFood();
+	void orderAdd();
 	void bill();
 	void billShow();
 	void billAdd();

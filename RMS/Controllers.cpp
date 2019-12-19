@@ -21,9 +21,9 @@ void Controllers::home()
 	case 2:
 		this->desk();
 		break;
-	/*case 3:
-		this->order();
-		break;*/
+	case 3:
+		this->addFood();
+		break;
 	case 4:
 		this->bill();
 		break;
@@ -84,12 +84,12 @@ void Controllers::desk()
 {
 	switch (views.desk())
 	{
-		case 0:
-			this->home();
-			break;
-		case 1:
-			this->deskShow();
-			break;
+	case 0:
+		this->home();
+		break;
+	case 1:
+		this->deskShow();
+		break;
 		/*case 2:
 			this->deskAdd();
 			break;
@@ -102,55 +102,49 @@ void Controllers::desk()
 }
 void Controllers::deskShow()
 {
-    views.deskShow(desks);
-	
-    this->desk();
+	views.deskShow(desks);
+	this->desk();
 }
-//void Controllers::order()
-//{
-//    switch (views.order())
-//    {
-//    case 0:
-//        this->home();
-//        break;
-//    case 1:
-//        this->orderAdd();
-//        break;
-//    default:
-//        break;
-//    }
-//}
-//void Controllers::orderAdd()
-//{
-//	AddFood temp = views.orderAdd();
-//	int id = models.insert(temp);
-//	if (id)
-//	{
-//		temp.foodId = id;
-//		menus.insert(temp);
-//	}
-//	this->menu();
-//}
-//
+void Controllers::addFood()
+{
+	switch (views.addFood())
+	{
+	case 0:
+		this->home();
+		break;
+	case 1:
+		this->orderAdd();
+		break;
+	default:
+		break;
+	}
+}
+void Controllers::orderAdd()
+{
+	AddFood temp = views.orderAdd();
+	int id = models.insert(temp);
+	this->addFood();
+}
+
 void Controllers::bill()
 {
-    switch (views.bill())
-    {
-    case 0:
-        this->home();
-        break;
-    case 1:
-        this->billAdd();
-        break;
-    case 2:
-        //this->billOrder();
-        break;
-    case 3:
-        // this->billPayment();
-        break;
-    default:
-        break;
-    }
+	switch (views.bill())
+	{
+	case 0:
+		this->home();
+		break;
+	case 1:
+		this->billAdd();
+		break;
+		//case 2:
+		//    //this->billOrder();
+		//    break;
+	case 3:
+		this->billPayment();
+		break;
+	default:
+		break;
+	}
 }
 void Controllers::billAdd()
 {
@@ -162,10 +156,14 @@ void Controllers::billAdd()
 			availableDesk.insert(desks[i]);
 		}
 	}
-    Bill temp;
-    temp = views.billAdd(availableDesk);
-    bills.insert(temp);
-    this->bill();
+	Bill temp;
+	temp = views.billAdd(availableDesk);
+	bills.insert(temp);
+	this->bill();
+}
+void Controllers::billPayment()
+{
+
 }
 //void Controllers::deskShow()
 //{
