@@ -10,6 +10,7 @@ using namespace std;
 class Print {
 public:
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	Print& setColor(const int);
 	Print& print(const string);
 	Print& print(const int, const string);
 };

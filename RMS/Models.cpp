@@ -4,19 +4,20 @@
 Models::Models() {
 	sqlConnHandle = NULL;
 	sqlStmtHandle = NULL;
-	print(8, "Connecting   0%... Initialize.");
+	setColor(8);
+	print("Connecting   0%... Initialize.");
 	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &sqlEnvHandle)) {
-		print(8, "Connecting  15%... SQLAllocHandle.");
+		print("Connecting  15%... SQLAllocHandle.");
 	}
 	if (SQL_SUCCESS == SQLSetEnvAttr(sqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0)) {
-		print(8, "Connecting  30%... SQLSetEnvAttr.");
+		print("Connecting  30%... SQLSetEnvAttr.");
 	}
 	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, sqlEnvHandle, &sqlConnHandle)) {
-		print(8, "Connecting  45%... SQLAllocHandle.");
+		print("Connecting  45%... SQLAllocHandle.");
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
-		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=192.168.97.253;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=172.20.128.105;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
 		SQL_NTS,
 		retconstring,
 		1024,
@@ -24,20 +25,27 @@ Models::Models() {
 		SQL_DRIVER_NOPROMPT))
 	{
 	case SQL_SUCCESS:
-		print(8, "Connecting  95%... Successfully connected to SQL Server.");
+		print("Connecting  95%... Successfully connected to SQL Server.");
 		break;
 	case SQL_SUCCESS_WITH_INFO:
-		print(8, "Connecting  95%... Successfully connected to SQL Server.");
+		print("Connecting  95%... Successfully connected to SQL Server.");
 		break;
 	default:
-		print(8, "Connecting fail... Could not connect to SQL Server.");
+		print("Connecting fail... Could not connect to SQL Server.");
 		break;
 	}
-	print(8, "Connecting 100%... Ready to query.");
+	print("Connecting 100%... Ready to query.");
+	setColor(15);
 }
 
 //MENU
 int Models::insert(const Menu& menu) {
+
+	print(8, "[INSERT] to SQL");
+	setColor(2);
+	cout << menu << endl;
+	setColor(15);
+
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
@@ -50,6 +58,12 @@ int Models::insert(const Menu& menu) {
 }
 
 int Models::update(const Menu& menu) {
+
+	print(8, "[UPDATE] to SQL");
+	setColor(2);
+	cout << menu << endl;
+	setColor(15);
+
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
 		"UPDATE MENU SET Cost = " +
@@ -61,6 +75,12 @@ int Models::update(const Menu& menu) {
 }
 
 int Models::remove(const Menu& menu) {
+
+	print(8, "[REMOVE] to SQL");
+	setColor(2);
+	cout << menu << endl;
+	setColor(15);
+
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
@@ -69,6 +89,9 @@ int Models::remove(const Menu& menu) {
 }
 
 int Models::select(List<Menu>& menus) {
+
+	print(8, "[SELECT] from SQL");
+
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);

@@ -2,8 +2,11 @@
 #ifndef PRINT_CPP
 #define PRINT_CPP
 #include "Print.h"
+Print& Print::setColor(const int color) {
+	SetConsoleTextAttribute(hConsole, color);
+	return *this;
+}
 Print& Print::print(const string s) {
-	SetConsoleTextAttribute(hConsole, 15);
 	cout << s << endl;
 	return *this;
 };
