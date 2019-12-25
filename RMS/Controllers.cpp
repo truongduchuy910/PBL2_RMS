@@ -56,26 +56,22 @@ void Controllers::menu()
 void Controllers::menuShow()
 {
 	views.menuShow();
-	menus.print();
+	menus.out();
 	this->menu();
 }
 
 void Controllers::menuAdd()
 {
 	Menu temp = views.menuAdd();
-	int id = models.insert(temp);
-	if (id)
-	{
-		temp.foodId = id;
-		menus.insert(temp);
-	}
+	menus.insert(temp);
+	models.insert(temp);
 	this->menu();
 }
 
 void Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
-	menus.findAndRemove(temp);
+	menus.remove(temp);
 	//models.findAndRemove(temp);
 	this->menu();
 }
@@ -122,7 +118,7 @@ void Controllers::addFood()
 void Controllers::addFoodAdd()
 {
 	views.menuShow();
-	menus.print();
+	menus.out();
 	AddFood temp = views.addFoodAdd();
 	addFoods.insert(temp);
 	this->addFood();

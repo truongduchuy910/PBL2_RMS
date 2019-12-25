@@ -88,7 +88,7 @@ int Views::desk()
 void Views::deskShow(List<Desk>& desks)
 {
 	Desk::head();
-	desks.print();
+	desks.out();
 	/*cout << endl
 		<< "=============== DESK SHOW" << endl;*/
 
@@ -164,7 +164,7 @@ Bill Views::billAdd(List<Desk>& desks)
 		<< "=============== BILL ADD" << endl;
 	cout << "Available Table" << endl;
 	Desk::head();
-	desks.print();
+	desks.out();
 	Bill newBill;
 	cout << "billId:" << endl;
 	newBill.billId = rand();
