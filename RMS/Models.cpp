@@ -43,17 +43,8 @@ int Models::insert(const Menu& menu) {
 
 	print(8, "[INSERT] to SQL");
 	setColor(2);
-	cout << menu.foodId << endl;
-	cout << menu.name << endl;
-	cout << menu.cost << endl;
+	cout << menu << endl;
 	setColor(15);
-	print(12,
-		"INSERT INTO MENU (FoodName, Cost) VALUES" +
-		parentheses(
-			apostrophe(menu.name) + plus +
-			apostrophe(menu.cost)
-		)
-	);
 	LPCWSTR result = s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
 		parentheses(
