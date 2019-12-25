@@ -47,6 +47,5 @@ public:
 	string apostrophe(const char[]);
 	string plus = ",";
 	wstring s2ws(const string& s);
-	void log(const string);
 };
 #endif // !MODEL_H

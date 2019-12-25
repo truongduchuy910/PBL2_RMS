@@ -47,11 +47,15 @@ public:
 	int billId, deskId;
 	int payment;
 	double total;
+	friend ostream& operator<<(ostream&, const Bill&);
+	friend istream& operator>>(istream&, Bill&);
 };
 class AddFood
 {
 public:
 	int addfoodId, foodId, quantity, deskId, billId;
+	friend ostream& operator<<(ostream&, const AddFood&);
+	friend istream& operator>>(istream&, AddFood&);
 };
 
 #endif

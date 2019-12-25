@@ -42,9 +42,7 @@ Models::Models() {
 int Models::insert(const Menu& menu) {
 
 	print(8, "[INSERT] to SQL");
-	setColor(1);
 	cout << menu << endl;
-	setColor(15);
 
 	wstring stemp = s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
@@ -67,9 +65,7 @@ int Models::insert(const Menu& menu) {
 int Models::update(const Menu& menu) {
 
 	print(8, "[UPDATE] to SQL");
-	setColor(1);
 	cout << menu << endl;
-	setColor(15);
 	wstring stemp = s2ws(
 		"UPDATE MENU SET Cost = " +
 		apostrophe(menu.cost) + plus +
@@ -89,9 +85,7 @@ int Models::update(const Menu& menu) {
 int Models::remove(const Menu& menu) {
 
 	print(8, "[REMOVE] to SQL");
-	setColor(1);
 	cout << menu << endl;
-	setColor(15);
 	wstring stemp = s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
 	).c_str();
@@ -102,7 +96,9 @@ int Models::remove(const Menu& menu) {
 	}
 	else {
 		print(4, "Fail");
-	};	return true;
+	};
+	return true;
+
 }
 
 int Models::select(List<Menu>& menus) {
@@ -132,22 +128,42 @@ int Models::select(List<Menu>& menus) {
 
 //DESK
 int Models::insert(const Desk& desk) {
-	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
-	command += "')";
-	std::wstring stemp = s2ws(command);
+
+	print(8, "[INSERT] to SQL");
+	cout << desk << endl;
+
+	wstring stemp = s2ws(
+		"INSERT INTO DESK (DeskID) VALUES" +
+		parentheses(
+			apostrophe(desk.deskId)
+		)
+	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
 	return true;
 
 }
 int Models::remove(const Desk& desk) {
-	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
-	command += "')";
-	std::wstring stemp = s2ws(command);
+
+	print(8, "[REMOVE] to SQL");
+	cout << desk << endl;
+	wstring stemp = s2ws(
+		"DELETE FROM DESK WHERE DeskID  = " + apostrophe(desk.deskId)
+	).c_str();
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
 	return true;
 
 }
@@ -175,12 +191,24 @@ int Models::select(List<Desk>& desks) {
 
 //BILL
 int Models::insert(const Bill& bill) {
-	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
-	command += "')";
-	std::wstring stemp = s2ws(command);
+
+	print(8, "[INSERT] to SQL");
+	cout << bill << endl;
+
+	wstring stemp = s2ws(
+		"INSERT INTO BILL (DeskID) VALUES" +
+		parentheses(
+			apostrophe(bill.deskId)
+		)
+	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
 	return true;
 
 }
@@ -212,12 +240,26 @@ int Models::select(List<Bill>& bills) {
 //ADDFOOD
 
 int Models::insert(const AddFood& addFood) {
-	string command = "INSERT INTO ADDFOOD (AddfoodId, FoodId, Quantity, DeskId, BillId) VALUES('";
-	command += "')";
-	std::wstring stemp = s2ws(command);
+
+	print(8, "[INSERT] to SQL");
+	cout << addFood << endl;
+
+	wstring stemp = s2ws(
+		"INSERT INTO ADDFOOD (FoodID, Quantity,BillId) VALUES" +
+		parentheses(
+			apostrophe(addFood.foodId) + plus +
+			apostrophe(addFood.quantity) + plus +
+			apostrophe(addFood.billId)
+		)
+	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
 	return true;
 
 }
@@ -272,8 +314,4 @@ wstring Models::s2ws(const string& s)
 	delete[] buf;
 	return r;
 }
-void Models::log(const string) {
-	SetConsoleTextAttribute(hConsole, 8);
-	SetConsoleTextAttribute(hConsole, 15);
-};
 #endif
