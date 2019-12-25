@@ -47,12 +47,25 @@ public:
 	int billId, deskId;
 	int payment;
 	double total;
+	Bill()
+	{
+		billId = 0;
+		total = 0;
+	}
+	static void head()
+	{
+		cout << setw(7) << " deskId" << setw(7) << "total" << setw(12) << "payment status" << endl;
+	}
 	friend ostream& operator<<(ostream&, const Bill&);
 	friend istream& operator>>(istream&, Bill&);
 };
 class AddFood
 {
 public:
+	AddFood()
+	{
+		addfoodId = 0;
+	}
 	int addfoodId, foodId, quantity, deskId, billId;
 	friend ostream& operator<<(ostream&, const AddFood&);
 	friend istream& operator>>(istream&, AddFood&);
