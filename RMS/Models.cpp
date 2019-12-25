@@ -66,9 +66,10 @@ int Models::update(const Menu& menu) {
 }
 
 int Models::remove(const Menu& menu) {
-	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
+	LPCWSTR result =
+		s2ws(
+			"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
+		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
