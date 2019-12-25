@@ -151,9 +151,8 @@ int Views::bill()
 	{
 		cout << "0. back" << endl;
 		cout << "1. add" << endl;
-		cout << "2. order" << endl;
-		cout << "3. payment" << endl;
-		cout << "Choose your option [0-3]: ";
+		cout << "2. payment" << endl;
+		cout << "Choose your option [0-2]: ";
 		cin >> n;
 	} while (n < 0 || n > 8);
 

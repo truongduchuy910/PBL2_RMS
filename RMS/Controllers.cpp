@@ -4,10 +4,10 @@
 #include"Controllers.h"
 void Controllers::init() {
 	cout << "get data";
-	//models.get(menus);
-	//models.get(desks);
-	//models.get(bills);
-	//models.get(addFoods);
+	models.select(menus);
+	models.select(desks);
+	models.select(bills);
+	models.select(addFoods);
 }
 void Controllers::home()
 {
@@ -121,6 +121,8 @@ void Controllers::addFood()
 }
 void Controllers::addFoodAdd()
 {
+	views.menuShow();
+	menus.print();
 	AddFood temp = views.addFoodAdd();
 	addFoods.insert(temp);
 	this->addFood();
@@ -136,10 +138,7 @@ void Controllers::bill()
 	case 1:
 		this->billAdd();
 		break;
-		//case 2:
-		//    //this->billOrder();
-		//    break;
-	case 3:
+	case 2:
 		this->billPayment();
 		break;
 	default:
@@ -165,11 +164,6 @@ void Controllers::billPayment()
 {
 
 }
-//void Controllers::deskShow()
-//{
-//    views.deskShow();
-//    this->desk();
-//}
 //void Controllers::deskAdd()
 //{
 //    Desk temp;
@@ -183,13 +177,6 @@ void Controllers::billPayment()
 //    temp = views.deskRemove();
 //    table.desk.findOneAndRemove(temp);
 //    this->desk();
-//}
-//void Controllers::addFoodAdd()
-//{
-//    Order temp;
-//    temp = views.addFoodAdd();
-//    table.order.insertFirst(temp);
-//    this->order();
 //}
 
 #endif

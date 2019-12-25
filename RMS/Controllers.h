@@ -31,7 +31,6 @@ public:
 	void bill();
 	void billShow();
 	void billAdd();
-	void billOrder();
 	void billPayment();
 };
 #endif
