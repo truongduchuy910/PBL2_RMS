@@ -1,4 +1,5 @@
-﻿use qlNhaHang
+﻿create database qlNhaHang
+use qlNhaHang
 create table DESK
 (
    DeskID int primary key,
@@ -6,7 +7,7 @@ create table DESK
 )
 create table BILL
 (
-   BillID int primary key,
+   BillID int identity(1000,1) primary key,
    DeskID int,
    Payment bit default('0'),
    --payment kiểu true false để biết trạng thái thanh toán
@@ -15,7 +16,7 @@ create table BILL
 )
 create table MENU
 (
-   FoodID int primary key,
+   FoodID int identity(5000,1) primary key,
    --foodId
    FoodName nvarchar(50) not null unique,
    --name
@@ -58,8 +59,8 @@ Insert into Menu(FoodName,Cost) values
 Insert into Desk(DeskID) values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20)
 
 --Trigger
---Trả về giá trị False cho DeskID tương ứng khi thêm mới 1 hóa đơn (có DeskID tương ứng)
-create trigger trig_Insert_Bill_Desk
+--Trả về giá trị False cho DeskID tương ứng khi thêm mới 1 hóa đơn (có DeskID tương ứng) -->Done
+Create trigger trg_Insert_Bill
 on BILL
 for Insert
 As
@@ -67,7 +68,7 @@ As
   From DESK inner join inserted
   On DESK.DeskID = inserted.DeskID
 
---Trả về giá trị True cho DeskID tương ứng khi update Payment về True
+--Trả về giá trị True cho DeskID tương ứng khi update Payment về True -->Done
 create trigger trg_Update_Bill_DESK
 On BILL
 For update
@@ -81,21 +82,18 @@ As
 	  update DESK set Available = 1 where DESK.DeskID = @DeskID 
     End
 
---Trigger tình Total: đang fix....đừng f5 dòng dưới này
+--Trigger tình Total -->Done
 Create Trigger trg_addfood_bill
 On ADDFOOD
 For Insert
 As
- begin
-  declare @BillID int   --ADDFOOD
-  declare @Total money  --BILL
-  declare @Soluong int  --inserted
-  declare @Cost money   --MENU
-  declare @FoodID int   --ADDFOOD
-  select @BillID = BillID, @Soluong = Quantity,@FoodID = FoodID  from inserted
-  select @Cost = Cost From MENU Inner Join ADDFOOD on MENU.FoodID = ADDFOOD.FoodID
-  select @Total = Total From BILL Inner Join ADDFOOD on BILL.BillID = ADDFOOD.BillID   
-  update BILL
-         set Total = SUM(@Cost*@Soluong)
-		 where BILL.BillID = @BillID 
+  begin
+	declare @FoodID int
+	declare @Sl int
+	declare @BillID int
+	declare @Cost money
+	select @FoodID = FoodID, @Sl = Quantity, @BillID = BillID from inserted
+	select @Cost = Cost from MENU where FoodID = @FoodID
+	update BILL
+	set Total =Total + @Sl*@Cost where BillID = @BillID
   end
