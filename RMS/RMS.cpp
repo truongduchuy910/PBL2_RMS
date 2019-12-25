@@ -8,13 +8,6 @@ Controllers controllers;
 int main()
 {
 	controllers.init();
-	for (int i = 0; i < controllers.bills.length; i++) {
-		cout << controllers.bills[i];
-	}
 	controllers.home();
-	/*Models models;
-	List<Desk> desks;
-	models.get(desks);
-	desks.print();*/
 	return 0;
 }

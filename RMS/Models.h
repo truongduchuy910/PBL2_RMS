@@ -23,19 +23,29 @@ public:
 	SQLHANDLE sqlStmtHandle;
 	SQLHANDLE sqlEnvHandle;
 	SQLWCHAR retconstring[SQL_RETURN_CODE_LEN];
-	string AND = "', '";
-	string s = "'";
 
 	Models();
 	~Models() {};
-	int get(List<Menu>&);
-	int get(List<Desk>&);
-	int get(List<Bill>&);
-	int get(List<AddFood>&);
+
 	int insert(const Menu&);
+	int update(const Menu&);
+	int remove(const Menu&);
+	int select(List<Menu>&);
+
+	int insert(const Desk&);
+	int remove(const Desk&);
+	int select(List<Desk>&);
+
 	int insert(const Bill&);
+	int select(List<Bill>&);
+
 	int insert(const AddFood&);
-	int findAndRemove(const Menu&);
+	int select(List<AddFood>&);
+	string parentheses(const string);
+	string apostrophe(const double);
+	string apostrophe(const int);
+	string apostrophe(const string);
+	string plus = "', '";
 	wstring s2ws(const string& s);
 };
 #endif // !MODEL_H

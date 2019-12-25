@@ -37,8 +37,39 @@ Models::Models() {
 	cout << "Connecting 100%... Ready to query." << endl;
 }
 
+//MENU
+int Models::insert(const Menu& menu) {
+	LPCWSTR result =
+		s2ws("INSERT INTO MENU (FoodName, Cost) VALUES"
+			+ parentheses(
+				apostrophe(menu.name) + plus +
+				apostrophe(menu.cost)
+			)).c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+}
 
-int Models::get(List<Menu>& menus) {
+int Models::update(const Menu& menu) {
+	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+}
+
+int Models::remove(const Menu& menu) {
+	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+}
+
+int Models::select(List<Menu>& menus) {
 	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
@@ -61,7 +92,29 @@ int Models::get(List<Menu>& menus) {
 	return true;
 }
 
-int Models::get(List<Desk>& desks) {
+
+//DESK
+int Models::insert(const Desk& desk) {
+	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+
+}
+int Models::remove(const Desk& desk) {
+	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+
+}
+int Models::select(List<Desk>& desks) {
 	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
@@ -83,7 +136,19 @@ int Models::get(List<Desk>& desks) {
 	return true;
 }
 
-int Models::get(List<Bill>& bills) {
+//BILL
+int Models::insert(const Bill& bill) {
+	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+
+}
+
+int Models::select(List<Bill>& bills) {
 	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
@@ -107,7 +172,20 @@ int Models::get(List<Bill>& bills) {
 	return true;
 }
 
-int Models::get(List<AddFood>& addFoods) {
+//ADDFOOD
+
+int Models::insert(const AddFood& addFood) {
+	string command = "INSERT INTO ADDFOOD (AddfoodId, FoodId, Quantity, DeskId, BillId) VALUES('";
+	command += "')";
+	std::wstring stemp = s2ws(command);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	return true;
+
+}
+
+int Models::select(List<AddFood>& addFoods) {
 	cout << endl;
 	cout << "SQL  [SELECT] ";
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
@@ -131,96 +209,18 @@ int Models::get(List<AddFood>& addFoods) {
 	}
 	return true;
 }
-
-
-int Models::insert(const Menu& menu) {
-	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
-	command += to_string(menu.foodId)
-		+ AND + string(menu.name)
-		+ AND + to_string(menu.cost);
-	command += "')";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	return true;
+string Models::parentheses(const string s) {
+	return ("(" + s + ")");
 }
-
-int Models::insert(const Bill& bill) {
-	string command = "INSERT INTO BILL (BillID, DeskID, Payment, Total) VALUES('";
-	command += to_string(bill.billId)
-		+ AND + to_string(bill.deskId)
-		+ AND + to_string(bill.payment)
-		+ AND + to_string(bill.total);
-	command += "')";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	return true;
-
-}
-
-int Models::insert(const AddFood& addFood) {
-	string command = "INSERT INTO ADDFOOD (AddfoodId, FoodId, Quantity, DeskId, BillId) VALUES('";
-	command += to_string(addFood.addfoodId)
-		+ AND + to_string(addFood.foodId)
-		+ AND + to_string(addFood.quantity)
-		+ AND + to_string(addFood.deskId)
-		+ AND + to_string(addFood.billId);
-	command += "')";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	return true;
-
-}
-
-int Models::findAndRemove(const Menu& menu) {
-	cout << "SQL  [DELETE] ";
-	string command = "DELETE MENU WHERE FoodId ='";
-	command += to_string(menu.foodId);
-	command += "'";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
-	case SQL_SUCCESS:
-		cout << "Success!" << endl;
-		break;
-	case SQL_SUCCESS_WITH_INFO:
-		cout << "Success!" << endl;
-
-		break;
-	default:
-		cout << "Fail!" << endl;
-		break;
-	}
-	return true;
-}
-////void Models::menuUpdate(const Menu& menu) {
-////	string command = "UPDATE MENU SET FoodName = '";
-////	command += string(menu.foodName) + s;
-////	command += ", Cost = '";
-////	command += to_string(menu.cost) + s;
-////	command += " WHERE FoodId = '";
-////	command += to_string(menu.foodId) + s;
-////	std::wstring stemp = s2ws(command);
-////	LPCWSTR result = stemp.c_str();
-////	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-////	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
-////	case SQL_SUCCESS:
-////		cout << "[UPDATE] Successful!" << endl;
-////		break;
-////	case SQL_SUCCESS_WITH_INFO:
-////		cout << "[UPDATE] Successful!" << endl;
-////		break;
-////	default:
-////		cout << "[UPDATE] Fail!" << endl;
-////		break;
-////	}
-////}
+string Models::apostrophe(const double s) {
+	return ("'" + to_string(s) + "'");
+};
+string Models::apostrophe(const int s) {
+	return ("'" + to_string(s) + "'");
+};
+string Models::apostrophe(const string s) {
+	return ("'" + s + "'");
+};
 wstring Models::s2ws(const string& s)
 {
 	int len;
