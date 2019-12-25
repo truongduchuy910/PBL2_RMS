@@ -43,7 +43,9 @@ int Models::insert(const Menu& menu) {
 
 	print(8, "[INSERT] to SQL");
 	setColor(2);
-	cout << menu << endl;
+	cout << menu.foodId << endl;
+	cout << menu.name << endl;
+	cout << menu.cost << endl;
 	setColor(15);
 
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
