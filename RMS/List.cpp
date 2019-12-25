@@ -50,13 +50,11 @@ bool List<Data>::isEmpty()
 template <typename Data>
 int List<Data>::insert(const Data& dataIn)
 {
-	cout << "LIST [INSERT] ";
 	if (isEmpty())
 	{
 		Node<Data>* newNode = new Node<Data>(dataIn);
 		start = newNode;
 		this->length++;
-		cout << "Success" << endl;
 		return true;
 	}
 	else
@@ -65,17 +63,14 @@ int List<Data>::insert(const Data& dataIn)
 		newNode->next = start;
 		start = newNode;
 		this->length++;
-		cout << "Success" << endl;
 		return true;
 	}
-	cout << "Fail" << endl;
 	return false;
 }
 template <typename Data>
 int List<Data>::update(const Data& dataIn)
 {
 	Node<Data>* temp = this->start;
-
 	while ((temp != NULL) && !(temp->data != dataIn)) {
 		temp = temp->next;
 	}
@@ -113,7 +108,8 @@ int List<Data>::out()
 {
 	if (isEmpty())
 	{
-		cout << "The list is empty" << endl;
+		print(6, "The list is empty");
+		print(8, "Insert values to continue, Please!");
 	}
 	else
 	{

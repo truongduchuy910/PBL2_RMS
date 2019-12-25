@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <string>
 #include "Tables.h"
+#include "Print.h"
 using namespace std;
 
 template <typename Data>
@@ -29,7 +30,7 @@ private:
 };
 
 template <typename Data>
-class List
+class List: public Print
 {
 public:
 	int length;
