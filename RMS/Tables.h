@@ -66,6 +66,10 @@ public:
 	{
 		addfoodId = 0;
 	}
+	static void head()
+	{
+		cout << setw(7) << " billId" << setw(7) << "deskId" << endl;
+	}
 	int addfoodId, foodId, quantity, deskId, billId;
 	friend ostream& operator<<(ostream&, const AddFood&);
 	friend istream& operator>>(istream&, AddFood&);
