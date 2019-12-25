@@ -11,11 +11,10 @@
 #include <cstdlib>
 #include "Tables.h"
 #include "List.h"
-
+#include "Print.h"
 using namespace std;
-class Models {
+class Models :public Print {
 public:
-
 #define SQL_RESULT_LEN 240
 #define SQL_RETURN_CODE_LEN 1000
 	//define handles and variables
@@ -47,5 +46,6 @@ public:
 	string apostrophe(const string);
 	string plus = "', '";
 	wstring s2ws(const string& s);
+	void log(const string);
 };
 #endif // !MODEL_H

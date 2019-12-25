@@ -2,18 +2,17 @@
 #define MODELS_CPP
 #include "Models.h"
 Models::Models() {
-
 	sqlConnHandle = NULL;
 	sqlStmtHandle = NULL;
-	cout << "Connecting   0%... Initialize." << endl;
+	print(8, "Connecting   0%... Initialize.");
 	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &sqlEnvHandle)) {
-		cout << "Connecting  15%... SQLAllocHandle." << endl;
+		print(8, "Connecting  15%... SQLAllocHandle.");
 	}
 	if (SQL_SUCCESS == SQLSetEnvAttr(sqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0)) {
-		cout << "Connecting  30%... SQLSetEnvAttr." << endl;
+		print(8, "Connecting  30%... SQLSetEnvAttr.");
 	}
 	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, sqlEnvHandle, &sqlConnHandle)) {
-		cout << "Connecting  45%... SQLAllocHandle." << endl;
+		print(8, "Connecting  45%... SQLAllocHandle.");
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
@@ -25,62 +24,54 @@ Models::Models() {
 		SQL_DRIVER_NOPROMPT))
 	{
 	case SQL_SUCCESS:
-		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
+		print(8, "Connecting  95%... Successfully connected to SQL Server.");
 		break;
 	case SQL_SUCCESS_WITH_INFO:
-		cout << "Connecting  95%... Successfully connected to SQL Server." << endl;
+		print(8, "Connecting  95%... Successfully connected to SQL Server.");
 		break;
 	default:
-		cout << "Connecting fail... Could not connect to SQL Server." << endl;
+		print(8, "Connecting fail... Could not connect to SQL Server.");
 		break;
 	}
-	cout << "Connecting 100%... Ready to query." << endl;
+	print(8, "Connecting 100%... Ready to query.");
 }
 
 //MENU
 int Models::insert(const Menu& menu) {
-	LPCWSTR result =
-		s2ws(
-			"INSERT INTO MENU (FoodName, Cost) VALUES" +
-			parentheses(
-				apostrophe(menu.name) + plus +
-				apostrophe(menu.cost)
-			)
-		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
+		"INSERT INTO MENU (FoodName, Cost) VALUES" +
+		parentheses(
+			apostrophe(menu.name) + plus +
+			apostrophe(menu.cost)
+		)
+	).c_str(), SQL_NTS);
 	return true;
 }
 
 int Models::update(const Menu& menu) {
-	LPCWSTR result =
-		s2ws(
-			"UPDATE MENU SET Cost = " +
-			apostrophe(menu.cost) + plus +
-			"FoodName = " + apostrophe(menu.name) +
-			"WHERE FoodID = " + apostrophe(menu.foodId)
-		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
+		"UPDATE MENU SET Cost = " +
+		apostrophe(menu.cost) + plus +
+		"FoodName = " + apostrophe(menu.name) +
+		"WHERE FoodID = " + apostrophe(menu.foodId)
+	).c_str(), SQL_NTS);
 	return true;
 }
 
 int Models::remove(const Menu& menu) {
-	LPCWSTR result =
-		s2ws(
-			"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
-		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
+		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
+	).c_str(), SQL_NTS);
 	return true;
 }
 
 int Models::select(List<Menu>& menus) {
-	cout << endl;
-	cout << "SQL  [SELECT] ";
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
 		Menu temp;
 		menus.empty();
@@ -238,4 +229,8 @@ wstring Models::s2ws(const string& s)
 	delete[] buf;
 	return r;
 }
+void Models::log(const string) {
+	SetConsoleTextAttribute(hConsole, 8);
+	SetConsoleTextAttribute(hConsole, 15);
+};
 #endif

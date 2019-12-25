@@ -4,10 +4,10 @@
 #include"Controllers.h"
 void Controllers::init() {
 	cout << "get data";
-	models.get(menus);
-	models.get(desks);
-	models.get(bills);
-	models.get(addFoods);
+	//models.get(menus);
+	//models.get(desks);
+	//models.get(bills);
+	//models.get(addFoods);
 }
 void Controllers::home()
 {
@@ -76,7 +76,7 @@ void Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
 	menus.findAndRemove(temp);
-	models.findAndRemove(temp);
+	//models.findAndRemove(temp);
 	this->menu();
 }
 

@@ -154,6 +154,7 @@
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Models.cpp" />
+    <ClCompile Include="Print.cpp" />
     <ClCompile Include="RMS.cpp" />
     <ClCompile Include="Tables.cpp" />
     <ClCompile Include="Views.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Models.h" />
+    <ClInclude Include="Print.h" />
     <ClInclude Include="Tables.h" />
     <ClInclude Include="Views.h" />
   </ItemGroup>
