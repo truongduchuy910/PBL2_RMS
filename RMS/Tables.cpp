@@ -52,7 +52,7 @@ istream& operator>>(istream& is, Desk& desk)
 ostream& operator<<(ostream& os, const Bill& bill)
 {
 
-	os << setw(7) << bill.deskId << setw(7) << bill.total;
+	os << setw(7) << bill.billId << setw(7) << bill.deskId << setw(7) << bill.total;
 	if (bill.payment == 1)
 		os << setw(12) << "true";
 	else
