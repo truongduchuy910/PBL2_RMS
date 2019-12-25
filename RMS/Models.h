@@ -36,6 +36,7 @@ public:
 	int select(List<Desk>&);
 
 	int insert(const Bill&);
+	int update(const Bill&);
 	int select(List<Bill>&);
 
 	int insert(const AddFood&);

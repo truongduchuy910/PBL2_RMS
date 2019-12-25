@@ -215,6 +215,31 @@ int Models::insert(const Bill& bill) {
 
 }
 
+int Models::update(const Bill& bill) {
+
+	print(8, "[UPDATE] to SQL");
+	Bill::head();
+	print(1, bill);
+	wstring stemp = s2ws(
+		"UPDATE BILL (Payment) VALUES" +
+		parentheses(
+			apostrophe(bill.payment)
+		) +
+		"WHERE BillID = " +
+		apostrophe(bill.billId)
+	);
+	LPCWSTR result = stemp.c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
+	return true;
+
+}
+
 int Models::select(List<Bill>& bills) {
 	cout << endl;
 	cout << "SQL  [SELECT] ";
