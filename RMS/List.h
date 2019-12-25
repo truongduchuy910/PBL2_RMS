@@ -42,10 +42,10 @@ public:
 	int out();
 	int empty();
 	Data operator[](int);
-
+	bool isEmpty();
 private:
 	Node<Data>* start;
-	bool isEmpty();
+	
 };
 #include "List.cpp"
 #endif
