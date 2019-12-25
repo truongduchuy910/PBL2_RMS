@@ -127,6 +127,7 @@ int List<Data>::out()
 template <typename Data>
 int List<Data>::empty() {
 	this->start = NULL;
+	this->length = 0;
 	return true;
 }
 template <typename Data>
