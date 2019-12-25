@@ -71,7 +71,7 @@ template <typename Data>
 int List<Data>::update(const Data& dataIn)
 {
 	Node<Data>* temp = this->start;
-	while ((temp != NULL) && !(temp->data != dataIn)) {
+	while ((temp != NULL) && (temp->data != dataIn)) {
 		temp = temp->next;
 	}
 	if (temp != NULL) {
@@ -131,13 +131,18 @@ int List<Data>::empty() {
 	return true;
 }
 template <typename Data>
-Data List<Data>::operator[](int i) {
+Data& List<Data>::operator[](int i) {
 	Node<Data>* temp = this->start;
 	while (i && temp != NULL) {
 		temp = temp->next;
 		i--;
 	}
-	return temp->data;
+	if (temp != NULL) {
+		return temp->data;
+	}
+	else {
+		return this->start->data;
+	}
 };
 
 #endif

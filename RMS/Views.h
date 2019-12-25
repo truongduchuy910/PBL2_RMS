@@ -4,30 +4,30 @@
 #include "List.h"
 #include<ctime>
 #include<cstdlib>
-
+#include "Print.h"
 class Views;
-class Views
+class Views : public Print
 {
 public:
-    Views()
-    {
-        srand(time(NULL));
-    }
-    int home();
-    int menu();
-    int menuShow(List<Menu> &menus);
-    Menu menuAdd();
-    Menu menuRemove();
+	Views()
+	{
+		srand(time(NULL));
+	}
+	int home();
+	int menu();
+	int menuShow(List<Menu>& menus);
+	Menu menuAdd();
+	Menu menuRemove();
 
-    int desk();
-    /*Desk deskAdd();
-    Desk deskRemove();*/
-    void deskShow(List<Desk>&);
-    int addFood();
-    AddFood addFoodAdd( List<Bill>&);
-    int bill();
-    Bill billAdd(List<Desk>&);
-    Bill billPayment(List<Bill>& bills);
+	int desk();
+	/*Desk deskAdd();
+	Desk deskRemove();*/
+	void deskShow(List<Desk>&);
+	int addFood();
+	AddFood addFoodAdd(List<Bill>&, List<Menu>&);
+	int bill();
+	int billAdd(List<Desk>&);
+	int billPayment(List<Bill>& bills);
 };
 //Views views;
 #endif

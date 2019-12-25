@@ -41,6 +41,9 @@ int Views::menu()
 };
 int Views::menuShow(List<Menu>& menus)
 {
+
+	cout << endl
+		<< "=============== MENU SHOW" << endl;
 	Menu::head();
 	menus.out();
 	//dbMenus.print();
@@ -53,18 +56,19 @@ int Views::menuShow(List<Menu>& menus)
 }
 Menu Views::menuAdd()
 {
-	Menu newMenu;
 	cout << endl
 		<< "=============== MENU ADD" << endl;
+	Menu newMenu;
 	cout << "Input values: ";
 	cin >> newMenu;
 	return newMenu;
 }
 Menu Views::menuRemove()
 {
-	Menu newMenu;
 	cout << endl
 		<< "=============== MENU REMOVE" << endl;
+	Menu newMenu;
+
 	cout << "Input foodId: ";
 	cin >> newMenu.foodId;
 	return newMenu;
@@ -78,9 +82,9 @@ int Views::desk()
 	{
 		cout << "0. back" << endl;
 		cout << "1. show" << endl;
-		cout << "2. add" << endl;
-		cout << "3. remove" << endl;
-		cout << "Choose your option [0-3]: ";
+	/*	cout << "2. add" << endl;
+		cout << "3. remove" << endl;*/
+		cout << "Choose your option [0-1]: ";
 		cin >> n;
 	} while (n < 0 || n > 8);
 
@@ -88,6 +92,9 @@ int Views::desk()
 };
 void Views::deskShow(List<Desk>& desks)
 {
+	cout << endl
+		<< "=============== DESK SHOW" << endl;
+
 	Desk::head();
 	desks.out();
 	/*cout << endl
@@ -97,7 +104,7 @@ void Views::deskShow(List<Desk>& desks)
 int Views::addFood()
 {
 	cout << endl
-		<< "=============== order control" << endl;
+		<< "=============== ADD FOOD" << endl;
 
 	int n;
 	do
@@ -110,18 +117,27 @@ int Views::addFood()
 
 	return n;
 };
-AddFood Views::addFoodAdd(List<Bill>& bills)
+AddFood Views::addFoodAdd(List<Bill>& bills, List<Menu>& menus)
 {
 	cout << endl
 		<< "=============== ADD FOOD" << endl;
-
 	AddFood newAddFood;
-	/*cout << "deskId: ";
-	cin >> newAddFood.deskId;*/
-	//views.menuShow();
 	Bill::head();
 	bills.out();
-	cin >> newAddFood;
+	int deskId;
+	cout << "deskId: " << endl;
+	cin >> deskId;
+	for (int i = 0; i < bills.length; i++) {
+		if (bills[i].deskId == deskId) {
+			newAddFood.billId = bills[i].billId;
+		}
+	}
+	Menu::head();
+	menus.out();
+	cout << "foodId: " << endl;
+	cin >> newAddFood.foodId;
+	cout << "quantity: " << endl;
+	cin >> newAddFood.quantity;
 	return newAddFood;
 }
 
@@ -157,28 +173,28 @@ int Views::bill()
 
 	return n;
 };
-Bill Views::billAdd(List<Desk>& desks)
+int Views::billAdd(List<Desk>& desks)
 {
 	cout << endl
 		<< "=============== BILL ADD" << endl;
 	cout << "Available Table" << endl;
 	Desk::head();
 	desks.out();
-	Bill newBill;
-	cout << "deskId:" << endl;
-	cin >> newBill.deskId;
-	return newBill;
+	int deskId;
+	cout << "deskId: ";
+	cin >> deskId;
+
+	return deskId;
 }
-Bill Views::billPayment(List<Bill> &bills)
+int Views::billPayment(List<Bill>& bills)
 {
 	cout << endl
 		<< "=============== BILL PAYMENT" << endl;
 	Bill::head();
 	bills.out();
-	cout << "billId ";
-	Bill temp;
-	cin >> temp.billId;
-	temp.payment = true;
-	return temp;
+	cout << "billId: ";
+	int billId;
+	cin >> billId;
+	return billId;
 }
 #endif

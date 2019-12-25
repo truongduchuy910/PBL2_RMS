@@ -54,10 +54,11 @@ public:
 	}
 	static void head()
 	{
-		cout << setw(7) << "billId" << setw(7) << "deskId" << setw(7) << "total" << setw(12) << "payment status" << endl;
+		cout << setw(7) << "billId" << setw(7) << "deskId" << setw(7) << "total" << setw(12) << "payment" << endl;
 	}
 	friend ostream& operator<<(ostream&, const Bill&);
 	friend istream& operator>>(istream&, Bill&);
+	bool operator!=(const Bill&);
 };
 class AddFood
 {

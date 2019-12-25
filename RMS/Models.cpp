@@ -106,14 +106,14 @@ int Models::remove(const Menu& menu) {
 
 int Models::select(List<Menu>& menus) {
 
-	print(8, "[SELECT] from SQL");
+	print(8, "[SELECT] MENU from SQL");
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
 		Menu temp;
 		menus.empty();
-		cout << "success" << endl;
+		print(2, "Success");
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -122,7 +122,7 @@ int Models::select(List<Menu>& menus) {
 		}
 	}
 	else {
-		cout << "fail" << endl;
+		print(4, "Fail");
 	}
 	return true;
 }
@@ -170,15 +170,14 @@ int Models::remove(const Desk& desk) {
 
 }
 int Models::select(List<Desk>& desks) {
-	cout << endl;
-	cout << "SQL  [SELECT] ";
+	print(8, "[SELECT] DESK from SQL");
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM DESK", SQL_NTS)) {
 		Desk temp;
 		desks.empty();
-		cout << "success" << endl;
+		print(2, "Success");
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.available, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -186,7 +185,7 @@ int Models::select(List<Desk>& desks) {
 		}
 	}
 	else {
-		cout << "fail" << endl;
+		print(4, "Fail");
 	}
 	return true;
 }
@@ -221,10 +220,9 @@ int Models::update(const Bill& bill) {
 	Bill::head();
 	print(1, bill);
 	wstring stemp = s2ws(
-		"UPDATE BILL (Payment) VALUES" +
-		parentheses(
-			apostrophe(bill.payment)
-		) +
+		"UPDATE BILL SET Payment = " +
+		apostrophe(bill.payment)
+		+
 		"WHERE BillID = " +
 		apostrophe(bill.billId)
 	);
@@ -241,15 +239,14 @@ int Models::update(const Bill& bill) {
 }
 
 int Models::select(List<Bill>& bills) {
-	cout << endl;
-	cout << "SQL  [SELECT] ";
+	print(8, "[SELECT] BILL from SQL");
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM BILL", SQL_NTS)) {
 		Bill temp;
 		bills.empty();
-		cout << "success" << endl;
+		print(2, "Success");
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -259,7 +256,7 @@ int Models::select(List<Bill>& bills) {
 		}
 	}
 	else {
-		cout << "fail" << endl;
+		print(4, "Fail");
 	}
 	return true;
 }
@@ -292,15 +289,14 @@ int Models::insert(const AddFood& addFood) {
 }
 
 int Models::select(List<AddFood>& addFoods) {
-	cout << endl;
-	cout << "SQL  [SELECT] ";
+	print(8, "[SELECT] ADDFOOD from SQL");
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM ADDFOOD", SQL_NTS)) {
 		AddFood temp;
 		addFoods.empty();
-		cout << "success" << endl;
+		print(2, "Success");
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.addfoodId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -311,7 +307,7 @@ int Models::select(List<AddFood>& addFoods) {
 		}
 	}
 	else {
-		cout << "fail" << endl;
+		print(4, "Fail");
 	}
 	return true;
 }

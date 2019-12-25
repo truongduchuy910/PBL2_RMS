@@ -3,7 +3,6 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
-	cout << "get data";
 	models.select(menus);
 	models.select(desks);
 	models.select(bills);
@@ -17,15 +16,22 @@ void Controllers::home()
 		break;
 	case 1:
 		this->menu();
+		this->home();
 		break;
 	case 2:
 		this->desk();
+		this->home();
+
 		break;
 	case 3:
 		this->addFood();
+		this->home();
+
 		break;
 	case 4:
 		this->bill();
+		this->home();
+
 		break;
 	default:
 		break;
@@ -36,16 +42,20 @@ void Controllers::menu()
 	switch (views.menu())
 	{
 	case 0:
-		this->home();
 		break;
 	case 1:
 		this->menuShow();
+		this->menu();
 		break;
 	case 2:
 		this->menuAdd();
+		this->menu();
+
 		break;
 	case 3:
 		this->menuRemove();
+		this->menu();
+
 		break;
 
 	default:
@@ -56,8 +66,6 @@ void Controllers::menu()
 void Controllers::menuShow()
 {
 	views.menuShow(menus);
-	menus.out();
-	this->menu();
 }
 
 void Controllers::menuAdd()
@@ -66,7 +74,6 @@ void Controllers::menuAdd()
 	menus.insert(temp);
 	models.insert(temp);
 	models.select(menus);
-	this->menu();
 }
 
 void Controllers::menuRemove()
@@ -74,7 +81,6 @@ void Controllers::menuRemove()
 	Menu temp = views.menuRemove();
 	menus.remove(temp);
 	models.remove(temp);
-	this->menu();
 }
 
 void Controllers::desk()
@@ -82,10 +88,10 @@ void Controllers::desk()
 	switch (views.desk())
 	{
 	case 0:
-		this->home();
 		break;
 	case 1:
 		this->deskShow();
+		this->desk();
 		break;
 		/*case 2:
 			this->deskAdd();
@@ -100,14 +106,12 @@ void Controllers::desk()
 void Controllers::deskShow()
 {
 	views.deskShow(desks);
-	this->desk();
 }
 void Controllers::addFood()
 {
 	switch (views.addFood())
 	{
 	case 0:
-		this->home();
 		break;
 	case 1:
 		this->addFoodAdd();
@@ -124,14 +128,18 @@ void Controllers::addFoodAdd()
 		this->addFoodAdd();
 	}
 	else {
-		views.menuShow(menus);
 		if (bills.isEmpty()) {
 			this->billAdd();
 			this->addFoodAdd();
 		}
 		else {
-
-			AddFood temp = views.addFoodAdd(bills);
+			List<Bill> availableBill;
+			for (int i = 0; i < bills.length; i++) {
+				if (bills[i].payment == false) {
+					availableBill.insert(bills[i]);
+				}
+			}
+			AddFood temp = views.addFoodAdd(availableBill, menus);
 			addFoods.insert(temp);
 			models.insert(temp);
 			models.select(addFoods);
@@ -139,13 +147,11 @@ void Controllers::addFoodAdd()
 		}
 	}
 }
-
 void Controllers::bill()
 {
 	switch (views.bill())
 	{
 	case 0:
-		this->home();
 		break;
 	case 1:
 		this->billAdd();
@@ -170,7 +176,7 @@ void Controllers::billAdd()
 		}
 	}
 	Bill temp;
-	temp = views.billAdd(availableDesk);
+	temp.deskId = views.billAdd(availableDesk);
 	bills.insert(temp);
 	models.insert(temp);
 	models.select(bills);
@@ -183,9 +189,17 @@ void Controllers::billPayment()
 	for (int i = 0; i < bills.length; i++)
 	{
 		if (bills[i].payment == false)
+		{
 			notPayment.insert(bills[i]);
+		}
 	}
-	views.billPayment(notPayment);
+	Bill temp;
+	temp.billId = views.billPayment(notPayment);
+	temp.payment = true;
+	bills.update(temp);
+	models.update(temp);
+
+	models.select(desks);
 }
 //void Controllers::deskAdd()
 //{

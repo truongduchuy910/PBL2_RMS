@@ -45,7 +45,6 @@ ostream& operator<<(ostream& os, const Desk& desk)
 istream& operator>>(istream& is, Desk& desk)
 {
 	cout << "deskId: ";
-	is.ignore();
 	is >> desk.deskId;
 	return is;
 }
@@ -62,9 +61,13 @@ ostream& operator<<(ostream& os, const Bill& bill)
 istream& operator>>(istream& is, Bill& bill)
 {
 	cout << "deskId: ";
-	is.ignore();
 	is >> bill.deskId;
 	return is;
+}
+
+bool Bill::operator!=(const Bill& content) {
+
+	return (this->billId != content.billId);
 }
 ostream& operator<<(ostream& os, const AddFood& addFood)
 {

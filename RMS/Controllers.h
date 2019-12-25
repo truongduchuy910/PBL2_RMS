@@ -6,6 +6,7 @@
 #include"List.h"
 #include"Views.h"
 #include"Models.h"
+#include "Print.h"
 using namespace std;
 class Controllers
 {

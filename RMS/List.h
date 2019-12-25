@@ -41,7 +41,7 @@ public:
 	int remove(const Data&);
 	int out();
 	int empty();
-	Data operator[](int);
+	Data& operator[](int);
 	bool isEmpty();
 private:
 	Node<Data>* start;
