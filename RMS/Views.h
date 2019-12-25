@@ -15,7 +15,7 @@ public:
     }
     int home();
     int menu();
-    int menuShow();
+    int menuShow(List<Menu> &menus);
     Menu menuAdd();
     Menu menuRemove();
 
@@ -24,10 +24,10 @@ public:
     Desk deskRemove();*/
     void deskShow(List<Desk>&);
     int addFood();
-    AddFood addFoodAdd();
+    AddFood addFoodAdd( List<Bill>&);
     int bill();
     Bill billAdd(List<Desk>&);
-    void billShow();
+    Bill billPayment(List<Bill>& bills);
 };
 //Views views;
 #endif

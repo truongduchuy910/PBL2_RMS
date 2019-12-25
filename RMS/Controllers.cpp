@@ -55,7 +55,7 @@ void Controllers::menu()
 
 void Controllers::menuShow()
 {
-	views.menuShow();
+	views.menuShow(menus);
 	menus.out();
 	this->menu();
 }
@@ -65,6 +65,7 @@ void Controllers::menuAdd()
 	Menu temp = views.menuAdd();
 	menus.insert(temp);
 	models.insert(temp);
+	models.select(menus);
 	this->menu();
 }
 
@@ -72,7 +73,7 @@ void Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
 	menus.remove(temp);
-	//models.findAndRemove(temp);
+	models.remove(temp);
 	this->menu();
 }
 
@@ -110,6 +111,7 @@ void Controllers::addFood()
 		break;
 	case 1:
 		this->addFoodAdd();
+		this->addFood();
 		break;
 	default:
 		break;
@@ -117,11 +119,25 @@ void Controllers::addFood()
 }
 void Controllers::addFoodAdd()
 {
-	views.menuShow();
-	menus.out();
-	AddFood temp = views.addFoodAdd();
-	addFoods.insert(temp);
-	this->addFood();
+	if (menus.isEmpty()) {
+		this->menuAdd();
+		this->addFoodAdd();
+	}
+	else {
+		views.menuShow(menus);
+		if (bills.isEmpty()) {
+			this->billAdd();
+			this->addFoodAdd();
+		}
+		else {
+
+			AddFood temp = views.addFoodAdd(bills);
+			addFoods.insert(temp);
+			models.insert(temp);
+			models.select(addFoods);
+			models.select(bills);
+		}
+	}
 }
 
 void Controllers::bill()
@@ -133,9 +149,11 @@ void Controllers::bill()
 		break;
 	case 1:
 		this->billAdd();
+		this->bill();
 		break;
 	case 2:
 		this->billPayment();
+		this->bill();
 		break;
 	default:
 		break;
@@ -154,11 +172,20 @@ void Controllers::billAdd()
 	Bill temp;
 	temp = views.billAdd(availableDesk);
 	bills.insert(temp);
-	this->bill();
+	models.insert(temp);
+	models.select(bills);
+	models.select(desks);
 }
 void Controllers::billPayment()
 {
-
+	List<Bill> notPayment;
+	cout << bills.length << endl;
+	for (int i = 0; i < bills.length; i++)
+	{
+		if (bills[i].payment == false)
+			notPayment.insert(bills[i]);
+	}
+	views.billPayment(notPayment);
 }
 //void Controllers::deskAdd()
 //{
