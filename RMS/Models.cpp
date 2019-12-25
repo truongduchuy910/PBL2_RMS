@@ -47,23 +47,23 @@ int Models::insert(const Menu& menu) {
 	cout << menu.name << endl;
 	cout << menu.cost << endl;
 	setColor(15);
-
-	cout << s2ws(
+	print(12,
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
 		parentheses(
 			apostrophe(menu.name) + plus +
 			apostrophe(menu.cost)
 		)
-	).c_str() << endl;
+	);
+	LPCWSTR result = s2ws(
+		"INSERT INTO MENU (FoodName, Cost) VALUES" +
+		parentheses(
+			apostrophe(menu.name) + plus +
+			apostrophe(menu.cost)
+		)
+	).c_str();
 
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
-		"INSERT INTO MENU (FoodName, Cost) VALUES" +
-		parentheses(
-			apostrophe(menu.name) + plus +
-			apostrophe(menu.cost)
-		)
-	).c_str(), SQL_NTS);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
 }
 
@@ -73,14 +73,14 @@ int Models::update(const Menu& menu) {
 	setColor(2);
 	cout << menu << endl;
 	setColor(15);
-
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
+	LPCWSTR result = s2ws(
 		"UPDATE MENU SET Cost = " +
 		apostrophe(menu.cost) + plus +
 		"FoodName = " + apostrophe(menu.name) +
 		"WHERE FoodID = " + apostrophe(menu.foodId)
-	).c_str(), SQL_NTS);
+	).c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
 }
 
@@ -90,11 +90,11 @@ int Models::remove(const Menu& menu) {
 	setColor(2);
 	cout << menu << endl;
 	setColor(15);
-
-	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
+	LPCWSTR result = s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
-	).c_str(), SQL_NTS);
+	).c_str();
+	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
+	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
 }
 
