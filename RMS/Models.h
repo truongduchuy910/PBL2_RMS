@@ -45,7 +45,7 @@ public:
 	string apostrophe(const int);
 	string apostrophe(const string);
 	string apostrophe(const char[]);
-	string plus = "', '";
+	string plus = ",";
 	wstring s2ws(const string& s);
 	void log(const string);
 };
