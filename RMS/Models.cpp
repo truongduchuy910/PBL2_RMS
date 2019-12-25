@@ -48,6 +48,14 @@ int Models::insert(const Menu& menu) {
 	cout << menu.cost << endl;
 	setColor(15);
 
+	cout << s2ws(
+		"INSERT INTO MENU (FoodName, Cost) VALUES" +
+		parentheses(
+			apostrophe(menu.name) + plus +
+			apostrophe(menu.cost)
+		)
+	).c_str() << endl;
+
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
@@ -242,6 +250,9 @@ string Models::apostrophe(const int s) {
 };
 string Models::apostrophe(const string s) {
 	return (" '" + s + "' ");
+};
+string Models::apostrophe(const char s[]) {
+	return (" '" + string(s) + "' ");
 };
 wstring Models::s2ws(const string& s)
 {
