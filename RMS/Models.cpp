@@ -40,21 +40,26 @@ Models::Models() {
 //MENU
 int Models::insert(const Menu& menu) {
 	LPCWSTR result =
-		s2ws("INSERT INTO MENU (FoodName, Cost) VALUES"
-			+ parentheses(
+		s2ws(
+			"INSERT INTO MENU (FoodName, Cost) VALUES" +
+			parentheses(
 				apostrophe(menu.name) + plus +
 				apostrophe(menu.cost)
-			)).c_str();
+			)
+		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
 }
 
 int Models::update(const Menu& menu) {
-	string command = "INSERT INTO MENU (FoodId, FoodName, Cost) VALUES('";
-	command += "')";
-	std::wstring stemp = s2ws(command);
-	LPCWSTR result = stemp.c_str();
+	LPCWSTR result =
+		s2ws(
+			"UPDATE MENU SET Cost = " +
+			apostrophe(menu.cost) + plus +
+			"FoodName = " + apostrophe(menu.name) +
+			"WHERE FoodID = " + apostrophe(menu.foodId)
+		).c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
 	return true;
@@ -210,16 +215,16 @@ int Models::select(List<AddFood>& addFoods) {
 	return true;
 }
 string Models::parentheses(const string s) {
-	return ("(" + s + ")");
+	return (" (" + s + ") ");
 }
 string Models::apostrophe(const double s) {
-	return ("'" + to_string(s) + "'");
+	return (" '" + to_string(s) + "' ");
 };
 string Models::apostrophe(const int s) {
-	return ("'" + to_string(s) + "'");
+	return (" '" + to_string(s) + "' ");
 };
 string Models::apostrophe(const string s) {
-	return ("'" + s + "'");
+	return (" '" + s + "' ");
 };
 wstring Models::s2ws(const string& s)
 {
