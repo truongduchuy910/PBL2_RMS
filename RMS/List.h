@@ -36,8 +36,9 @@ public:
 	List();
 	~List();
 	int insert(const Data&);
-	int findAndRemove(const Data&);
-	int print();
+	int update(const Data&);
+	int remove(const Data&);
+	int out();
 	int empty();
 	Data operator[](int);
 

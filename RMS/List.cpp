@@ -71,16 +71,27 @@ int List<Data>::insert(const Data& dataIn)
 	cout << "Fail" << endl;
 	return false;
 }
-
 template <typename Data>
-int List<Data>::findAndRemove(const Data& dataIn)
+int List<Data>::update(const Data& dataIn)
 {
-	cout << "LIST [DELETE] ";
+	Node<Data>* temp = this->start;
+
+	while ((temp != NULL) && !(temp->data != dataIn)) {
+		temp = temp->next;
+	}
+	if (temp != NULL) {
+		temp->data = dataIn;
+		return true;
+	}
+	return true;
+}
+template <typename Data>
+int List<Data>::remove(const Data& dataIn)
+{
 	Node<Data>* temp = this->start;
 	if (start != NULL && (start->data == dataIn)) {
 		start = start->next;
 		this->length--;
-		cout << "Success" << endl;
 		return true;
 
 	}
@@ -91,17 +102,14 @@ int List<Data>::findAndRemove(const Data& dataIn)
 		if (temp->next != NULL) {
 			this->length--;
 			temp->next = temp->next->next;
-			cout << "Success" << endl;
 			return true;
 		}
-
 	}
-	cout << "Fail" << endl;
 	return true;
 }
 
 template <typename Data>
-int List<Data>::print()
+int List<Data>::out()
 {
 	if (isEmpty())
 	{
@@ -114,7 +122,6 @@ int List<Data>::print()
 		{
 			if (currentNode != NULL) {
 				cout << currentNode->data << endl;
-
 			}
 			currentNode = currentNode->next; //moves to next node in list
 		}
