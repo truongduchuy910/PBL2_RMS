@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <string>
 #include <cstring>
+#include "Tables.h"
 using namespace std;
 class Print {
 public:
@@ -13,5 +14,9 @@ public:
 	Print& setColor(const int);
 	Print& print(const string);
 	Print& print(const int, const string);
+	Print& print(const int, const Menu);
+	Print& print(const int, const Bill);
+	Print& print(const int, const Desk);
+	Print& print(const int, const AddFood);
 };
 #endif
