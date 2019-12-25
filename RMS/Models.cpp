@@ -17,7 +17,7 @@ Models::Models() {
 	}
 	switch (SQLDriverConnect(sqlConnHandle,
 		NULL,
-		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=172.20.128.105;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
+		(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=localhost;DATABASE=qlNhaHang;Trusted=true;UID=sa;PWD=truongduc910",
 		SQL_NTS,
 		retconstring,
 		1024,
@@ -42,51 +42,67 @@ Models::Models() {
 int Models::insert(const Menu& menu) {
 
 	print(8, "[INSERT] to SQL");
-	setColor(2);
+	setColor(1);
 	cout << menu << endl;
 	setColor(15);
-	LPCWSTR result = s2ws(
+
+	wstring stemp = s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
 		parentheses(
 			apostrophe(menu.name) + plus +
 			apostrophe(menu.cost)
 		)
-	).c_str();
-
+	);
+	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};
 	return true;
 }
 
 int Models::update(const Menu& menu) {
 
 	print(8, "[UPDATE] to SQL");
-	setColor(2);
+	setColor(1);
 	cout << menu << endl;
 	setColor(15);
-	LPCWSTR result = s2ws(
+	wstring stemp = s2ws(
 		"UPDATE MENU SET Cost = " +
 		apostrophe(menu.cost) + plus +
 		"FoodName = " + apostrophe(menu.name) +
 		"WHERE FoodID = " + apostrophe(menu.foodId)
 	).c_str();
+	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	return true;
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};	return true;
 }
 
 int Models::remove(const Menu& menu) {
 
 	print(8, "[REMOVE] to SQL");
-	setColor(2);
+	setColor(1);
 	cout << menu << endl;
 	setColor(15);
-	LPCWSTR result = s2ws(
+	wstring stemp = s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
 	).c_str();
+	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS);
-	return true;
+	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+		print(2, "Success");
+	}
+	else {
+		print(4, "Fail");
+	};	return true;
 }
 
 int Models::select(List<Menu>& menus) {
