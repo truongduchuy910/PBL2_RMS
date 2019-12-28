@@ -14,9 +14,7 @@ public:
 	Print& setColor(const int);
 	Print& print(const string);
 	Print& print(const int, const string);
-	Print& print(const int, const Menu);
-	Print& print(const int, const Bill);
-	Print& print(const int, const Desk);
-	Print& print(const int, const AddFood);
+	Print& print(const int, const int, const int, const string);
+	void move(const int,const int);
 };
 #endif
