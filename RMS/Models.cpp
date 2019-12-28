@@ -1,6 +1,8 @@
 #ifndef MODELS_CPP
 #define MODELS_CPP
 #include "Models.h"
+//MODELS STATUS DEFINE
+
 Models::Models() {
 	sqlConnHandle = NULL;
 	sqlStmtHandle = NULL;
@@ -41,10 +43,6 @@ Models::Models() {
 //MENU
 int Models::insert(const Menu& menu) {
 
-	print(8, "[INSERT] to SQL");
-	Menu::head();
-	print(1, menu);
-
 	wstring stemp = s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
 		parentheses(
@@ -66,8 +64,6 @@ int Models::insert(const Menu& menu) {
 int Models::update(const Menu& menu) {
 
 	print(8, "[UPDATE] to SQL");
-	Menu::head();
-	print(1, menu);
 	wstring stemp = s2ws(
 		"UPDATE MENU SET Cost = " +
 		apostrophe(menu.cost) + plus +
@@ -87,8 +83,6 @@ int Models::update(const Menu& menu) {
 int Models::remove(const Menu& menu) {
 
 	print(8, "[REMOVE] to SQL");
-	Menu::head();
-	print(1, menu);
 	wstring stemp = s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
 	).c_str();
@@ -132,8 +126,6 @@ int Models::select(List<Menu>& menus) {
 int Models::insert(const Desk& desk) {
 
 	print(8, "[INSERT] to SQL");
-	Desk::head();
-	print(1, desk);
 	wstring stemp = s2ws(
 		"INSERT INTO DESK (DeskID) VALUES" +
 		parentheses(
@@ -154,8 +146,7 @@ int Models::insert(const Desk& desk) {
 int Models::remove(const Desk& desk) {
 
 	print(8, "[REMOVE] to SQL");
-	Desk::head();
-	print(1, desk);	wstring stemp = s2ws(
+	wstring stemp = s2ws(
 		"DELETE FROM DESK WHERE DeskID  = " + apostrophe(desk.deskId)
 	).c_str();
 	LPCWSTR result = stemp.c_str();
@@ -194,8 +185,6 @@ int Models::select(List<Desk>& desks) {
 int Models::insert(const Bill& bill) {
 
 	print(8, "[INSERT] to SQL");
-	Bill::head();
-	print(1, bill);
 	wstring stemp = s2ws(
 		"INSERT INTO BILL (DeskID) VALUES" +
 		parentheses(
@@ -217,8 +206,6 @@ int Models::insert(const Bill& bill) {
 int Models::update(const Bill& bill) {
 
 	print(8, "[UPDATE] to SQL");
-	Bill::head();
-	print(1, bill);
 	wstring stemp = s2ws(
 		"UPDATE BILL SET Payment = " +
 		apostrophe(bill.payment)
@@ -266,8 +253,6 @@ int Models::select(List<Bill>& bills) {
 int Models::insert(const AddFood& addFood) {
 
 	print(8, "[INSERT] to SQL");
-	AddFood::head();
-	print(1, addFood);
 	wstring stemp = s2ws(
 		"INSERT INTO ADDFOOD (FoodID, Quantity,BillId) VALUES" +
 		parentheses(

@@ -13,7 +13,7 @@
 #include "List.h"
 #include "Print.h"
 using namespace std;
-class Models :public Print {
+class Models {
 public:
 #define SQL_RESULT_LEN 240
 #define SQL_RETURN_CODE_LEN 1000
