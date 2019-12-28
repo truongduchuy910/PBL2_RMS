@@ -71,7 +71,7 @@ template <typename Data>
 int List<Data>::update(const Data& dataIn)
 {
 	Node<Data>* temp = this->start;
-	while ((temp != NULL) && (temp->data != dataIn)) {
+	while ((temp != NULL) && !(temp->data == dataIn)) {
 		temp = temp->next;
 	}
 	if (temp != NULL) {
