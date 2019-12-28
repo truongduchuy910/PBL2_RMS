@@ -3,10 +3,18 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
-	models.select(menus);
-	models.select(desks);
-	models.select(bills);
-	models.select(addFoods);
+	console.print(PRIMARY, "[SQL] Prepare menus ");
+	console.println(models.select(menus));
+
+	console.print(PRIMARY, "[SQL] Prepare desks ");
+	console.println(models.select(desks));
+
+	console.print(PRIMARY, "[SQL] Prepare bills ");
+	console.println(models.select(bills));
+
+	console.print(PRIMARY, "[SQL] Prepare addFoods ");
+	console.println(models.select(addFoods));
+
 }
 void Controllers::home()
 {

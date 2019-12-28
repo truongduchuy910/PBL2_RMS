@@ -17,6 +17,7 @@ public:
 	List<AddFood> addFoods;
 	Views views;
 	Models models;
+	Print console;
 	void init();
 	void home();
 	void menu();
