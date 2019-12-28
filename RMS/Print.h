@@ -19,14 +19,25 @@ using namespace std;
 class Print {
 public:
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	Print& setColor(const int);
-	Print& print(const string);
-	Print& print(const int, const string); 
-	Print& println(const string);
-	Print& println(const int, const string);
-	Print& println(const int);
-	Print& print(const int, const int, const int, const string);
-	void move(const int,const int);
-	string detail(int);
+	Print& color(const int);
+	Print& hr();
+	template <typename Data>
+	Print& p(const Data s) {
+		cout << s;
+		color(WHITE);
+		return *this;
+	};
+	template <typename Data>
+	Print& alert(const Data s) {
+		CONSOLE_SELECTION_INFO selectionInf;
+		GetConsoleSelectionInfo(&selectionInf);
+		move(0, 0);
+		cout << s;
+		color(WHITE);
+		move(selectionInf.dwSelectionAnchor.X, selectionInf.dwSelectionAnchor.Y);
+		return *this;
+	};
+	void move(const int, const int);
+	Print& status(int);
 };
 #endif
