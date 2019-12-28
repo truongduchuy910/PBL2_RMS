@@ -199,7 +199,7 @@ int Views::billPayment(List<Bill>& bills)
 }
 int Views::billDetail(List<AddFood>& addFoods)
 {
-	println(WARNING, "=============== BILL DETAIL");
+	console.color(WARNING).p( "=============== BILL DETAIL").hr();
 	AddFood::head();
 	addFoods.out();
 	cout << "Do you want to payment? (Y/N) ";

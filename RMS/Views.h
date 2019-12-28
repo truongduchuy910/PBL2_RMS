@@ -9,6 +9,7 @@ class Views;
 class Views : public Print
 {
 public:
+	Print console;
 	Views()
 	{
 		srand(time(NULL));

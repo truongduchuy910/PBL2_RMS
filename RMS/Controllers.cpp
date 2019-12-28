@@ -3,17 +3,17 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
-	console.print(PRIMARY, "[SQL] Prepare menus ");
-	console.println(models.select(menus));
+	console.color(PRIMARY).p("[SQL] Prepare menus");
+	console.status(models.select(menus)).hr();
 
-	console.print(PRIMARY, "[SQL] Prepare desks ");
-	console.println(models.select(desks));
+	console.color(PRIMARY).p("[SQL] Prepare desks ");
+	console.status(models.select(desks)).hr();
 
-	console.print(PRIMARY, "[SQL] Prepare bills ");
-	console.println(models.select(bills));
+	console.color(PRIMARY).p("[SQL] Prepare bills ");
+	console.status(models.select(bills)).hr();
 
-	console.print(PRIMARY, "[SQL] Prepare addFoods ");
-	console.println(models.select(addFoods));
+	console.color(PRIMARY).p("[SQL] Prepare addFoods ");
+	console.status(models.select(addFoods)).hr();
 
 }
 void Controllers::home()
@@ -214,14 +214,15 @@ int Controllers::billPayment()
 }
 void Controllers::billDetail(int billId)
 {
+	
 	Bill temp;
 	temp.billId = billId;
 	temp.payment = views.billDetail(addFoods);
-	console.print(PRIMARY, "[LIST] Update BILL ");
+	console.color(PRIMARY).p( "[LIST] Update BILL ").hr();
 	bills.update(temp);
-	console.println(SUCCESS);
-	console.print(PRIMARY, "[SQL] Update BILL ");
-	console.println(models.update(temp));
+	console.status(SUCCESS);
+	console.color(PRIMARY).p( "[SQL] Update BILL ").hr();
+	console.status(models.update(temp)).hr();
 	models.select(desks);
 }
 //void Controllers::deskAdd()
