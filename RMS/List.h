@@ -30,10 +30,11 @@ private:
 };
 
 template <typename Data>
-class List: public Print
+class List
 {
 public:
 	int length;
+	Print cs;
 	List();
 	~List();
 	int insert(const Data&);

@@ -108,8 +108,9 @@ int List<Data>::out()
 {
 	if (isEmpty())
 	{
-		print(6, "The list is empty");
-		print(8, "Insert values to continue, Please!");
+		cs.color(WARNING).p("The list is empty").hr().color(WHITE);
+		cs.color(LIGHT).p("Insert values to continue, Please!").hr().color(WHITE);
+
 	}
 	else
 	{
