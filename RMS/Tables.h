@@ -52,6 +52,8 @@ public:
 	{
 		billId = 0;
 		total = 0;
+		payment = 0;
+		deskId = 0;
 	}
 	static void head()
 	{
@@ -59,7 +61,7 @@ public:
 	}
 	friend ostream& operator<<(ostream&, const Bill&);
 	friend istream& operator>>(istream&, Bill&);
-	bool operator!=(const Bill&);
+	bool operator==(const Bill&);
 };
 class AddFood
 {
@@ -70,11 +72,13 @@ public:
 	}
 	static void head()
 	{
-		cout << setw(7) << " billId" << setw(7) << "deskId" << endl;
+		cout << setw(7) << " billId" << setw(7) << "foodId" << endl;
 	}
 	int addfoodId, foodId, quantity, deskId, billId;
 	friend ostream& operator<<(ostream&, const AddFood&);
 	friend istream& operator>>(istream&, AddFood&);
+	bool operator==(const AddFood&);
+
 };
 
 #endif

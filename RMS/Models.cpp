@@ -31,8 +31,8 @@ Models::Models() {
 }
 
 //MENU
-int Models::insert(const Menu& menu) {
-
+int Models::insert(List<Menu>& menus, const Menu& menu) {
+	menus.insert(menu);
 	wstring stemp = s2ws(
 		"INSERT INTO MENU (FoodName, Cost) VALUES" +
 		parentheses(
@@ -49,10 +49,10 @@ int Models::insert(const Menu& menu) {
 		return FAIL;
 	};
 	return SUCCESS;
-}
+};
 
-int Models::update(const Menu& menu) {
-
+int Models::update(List<Menu>& menus, const Menu& menu) {
+	menus.update(menu);
 	wstring stemp = s2ws(
 		"UPDATE MENU SET Cost = " +
 		apostrophe(menu.cost) + plus +
@@ -67,10 +67,9 @@ int Models::update(const Menu& menu) {
 	else {
 		return FAIL;
 	};	return SUCCESS;
-}
-
-int Models::remove(const Menu& menu) {
-
+};
+int Models::remove(List<Menu>& menus, const Menu& menu) {
+	menus.remove(menu);
 	wstring stemp = s2ws(
 		"DELETE FROM MENU WHERE FoodID = " + apostrophe(menu.foodId)
 	).c_str();
@@ -83,8 +82,9 @@ int Models::remove(const Menu& menu) {
 		return FAIL;
 	};
 	return SUCCESS;
+};
 
-}
+
 
 int Models::select(List<Menu>& menus) {
 
@@ -108,9 +108,8 @@ int Models::select(List<Menu>& menus) {
 }
 
 
-//DESK
-int Models::insert(const Desk& desk) {
-
+int Models::insert(List<Desk>& desks, const Desk& desk) {
+	desks.insert(desk);
 	wstring stemp = s2ws(
 		"INSERT INTO DESK (DeskID) VALUES" +
 		parentheses(
@@ -125,10 +124,10 @@ int Models::insert(const Desk& desk) {
 		return FAIL;
 	};
 	return SUCCESS;
+};
 
-}
-int Models::remove(const Desk& desk) {
-
+int Models::remove(List<Desk>& desks, const Desk& desk) {
+	desks.remove(desk);
 	wstring stemp = s2ws(
 		"DELETE FROM DESK WHERE DeskID  = " + apostrophe(desk.deskId)
 	).c_str();
@@ -140,8 +139,8 @@ int Models::remove(const Desk& desk) {
 		return FAIL;
 	};
 	return SUCCESS;
+};
 
-}
 int Models::select(List<Desk>& desks) {
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
@@ -162,8 +161,8 @@ int Models::select(List<Desk>& desks) {
 }
 
 //BILL
-int Models::insert(const Bill& bill) {
-
+int Models::insert(List<Bill>& bills, const Bill& bill) {
+	bills.insert(bill);
 	wstring stemp = s2ws(
 		"INSERT INTO BILL (DeskID) VALUES" +
 		parentheses(
@@ -181,8 +180,8 @@ int Models::insert(const Bill& bill) {
 
 }
 
-int Models::update(const Bill& bill) {
-
+int Models::update(List<Bill>& bills, const Bill& bill) {
+	bills.update(bill);
 	wstring stemp = s2ws(
 		"UPDATE BILL SET Payment = " +
 		apostrophe(bill.payment)
@@ -224,8 +223,8 @@ int Models::select(List<Bill>& bills) {
 
 //ADDFOOD
 
-int Models::insert(const AddFood& addFood) {
-
+int Models::insert(List<AddFood>& addFoods, const AddFood& addFood) {
+	addFoods.insert(addFood);
 	wstring stemp = s2ws(
 		"INSERT INTO ADDFOOD (FoodID, Quantity,BillID) VALUES" +
 		parentheses(

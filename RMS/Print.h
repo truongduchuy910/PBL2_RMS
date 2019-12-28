@@ -21,14 +21,14 @@ public:
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Print& color(const int);
 	Print& hr();
-	template <typename Data>
-	Print& p(const Data s) {
+	template <typename OutData>
+	Print& p(const OutData s) {
 		cout << s;
 		color(WHITE);
 		return *this;
 	};
-	template <typename Data>
-	Print& alert(const Data s) {
+	template <typename OutData>
+	Print& alert(const OutData s) {
 		CONSOLE_SELECTION_INFO selectionInf;
 		GetConsoleSelectionInfo(&selectionInf);
 		move(0, 0);
@@ -39,5 +39,6 @@ public:
 	};
 	void move(const int, const int);
 	Print& status(int);
+	Print& wait();
 };
 #endif

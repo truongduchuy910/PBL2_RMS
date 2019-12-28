@@ -3,7 +3,6 @@
 #include"Views.h"
 int Views::home()
 {
-
 	cout << endl
 		<< "=============== HOME CONTROL" << endl;
 	int n;
@@ -23,7 +22,6 @@ int Views::home()
 
 int Views::menu()
 {
-
 	cout << endl
 		<< "=============== MENU CONTROL" << endl;
 	int n;
@@ -42,6 +40,7 @@ int Views::menu()
 int Views::menuShow(List<Menu>& menus)
 {
 
+	system("cls");
 	cout << endl
 		<< "=============== MENU SHOW" << endl;
 	Menu::head();
@@ -75,6 +74,7 @@ Menu Views::menuRemove()
 }
 int Views::desk()
 {
+
 	cout << endl
 		<< "=============== DESK CONTROL" << endl;
 	int n;
@@ -82,8 +82,8 @@ int Views::desk()
 	{
 		cout << "0. back" << endl;
 		cout << "1. show" << endl;
-	/*	cout << "2. add" << endl;
-		cout << "3. remove" << endl;*/
+		/*	cout << "2. add" << endl;
+			cout << "3. remove" << endl;*/
 		cout << "Choose your option [0-1]: ";
 		cin >> n;
 	} while (n < 0 || n > 8);
@@ -92,6 +92,8 @@ int Views::desk()
 };
 void Views::deskShow(List<Desk>& desks)
 {
+	system("cls");
+
 	cout << endl
 		<< "=============== DESK SHOW" << endl;
 
@@ -103,6 +105,7 @@ void Views::deskShow(List<Desk>& desks)
 }
 int Views::addFood()
 {
+
 	cout << endl
 		<< "=============== ADD FOOD" << endl;
 
@@ -111,9 +114,10 @@ int Views::addFood()
 	{
 		cout << "0. back" << endl;
 		cout << "1. add" << endl;
-		cout << "choose your option [0 or 1]: ";
+		cout << "2. show" << endl;
+		cout << "choose your option [0-2]: ";
 		cin >> n;
-	} while (n < 0 || n > 1);
+	} while (n < 0 || n > 2);
 
 	return n;
 };
@@ -125,7 +129,7 @@ AddFood Views::addFoodAdd(List<Bill>& bills, List<Menu>& menus)
 	Bill::head();
 	bills.out();
 	int deskId;
-	cout << "deskId: " << endl;
+	cout << "deskId: ";
 	cin >> deskId;
 	for (int i = 0; i < bills.length; i++) {
 		if (bills[i].deskId == deskId) {
@@ -134,13 +138,23 @@ AddFood Views::addFoodAdd(List<Bill>& bills, List<Menu>& menus)
 	}
 	Menu::head();
 	menus.out();
-	cout << "foodId: " << endl;
+	cout << "foodId: ";
 	cin >> newAddFood.foodId;
 	cout << "quantity: " << endl;
 	cin >> newAddFood.quantity;
 	return newAddFood;
 }
+int Views::addFoodShow(List<AddFood>& addFoods)
+{
+	system("cls");
 
+	cout << endl
+		<< "=============== ADDFOOD SHOW" << endl;
+	AddFood::head();
+	addFoods.out();
+	return SUCCESS;
+
+}
 //Desk Views::deskAdd()
 //{
 //    cout << endl
@@ -157,7 +171,6 @@ AddFood Views::addFoodAdd(List<Bill>& bills, List<Menu>& menus)
 //}
 int Views::bill()
 {
-
 	cout << endl
 		<< "=============== BILL CONTROL" << endl;
 
@@ -188,6 +201,7 @@ int Views::billAdd(List<Desk>& desks)
 }
 int Views::billPayment(List<Bill>& bills)
 {
+	system("cls");
 	cout << endl
 		<< "=============== BILL PAYMENT" << endl;
 	Bill::head();
@@ -197,11 +211,15 @@ int Views::billPayment(List<Bill>& bills)
 	cin >> billId;
 	return billId;
 }
-int Views::billDetail(List<AddFood>& addFoods)
+int Views::billDetail(List<Menu>& menus, Bill& bill)
 {
-	console.color(WARNING).p( "=============== BILL DETAIL").hr();
-	AddFood::head();
-	addFoods.out();
+	system("cls");
+	console
+		.color(WHITE).p("=============== BILL DETAIL").hr()
+		.color(PRIMARY).p("id: ").p(bill.billId).hr()
+		.color(INFO).p("total: ").p(bill.total).hr();
+	Menu::head();
+	menus.out();
 	cout << "Do you want to payment? (Y/N) ";
 	char rep;
 	cin >> rep;

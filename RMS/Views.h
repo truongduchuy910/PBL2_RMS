@@ -26,10 +26,11 @@ public:
 	void deskShow(List<Desk>&);
 	int addFood();
 	AddFood addFoodAdd(List<Bill>&, List<Menu>&);
+	int addFoodShow(List<AddFood>&);
 	int bill();
 	int billAdd(List<Desk>&);
 	int billPayment(List<Bill>&);
-	int billDetail(List<AddFood>&);
+	int billDetail(List<Menu>&, Bill&);
 };
 //Views views;
 #endif

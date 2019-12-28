@@ -3,20 +3,19 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
-	console.color(PRIMARY).p("[SQL] Prepare menus");
+	console.color(PRIMARY).p("[SQL] Prepare menus - ");
 	console.status(models.select(menus)).hr();
 
-	console.color(PRIMARY).p("[SQL] Prepare desks ");
+	console.color(PRIMARY).p("[SQL] Prepare desks - ");
 	console.status(models.select(desks)).hr();
 
-	console.color(PRIMARY).p("[SQL] Prepare bills ");
+	console.color(PRIMARY).p("[SQL] Prepare bills - ");
 	console.status(models.select(bills)).hr();
 
-	console.color(PRIMARY).p("[SQL] Prepare addFoods ");
+	console.color(PRIMARY).p("[SQL] Prepare addFoods - ");
 	console.status(models.select(addFoods)).hr();
-
 }
-void Controllers::home()
+int Controllers::home()
 {
 	switch (views.home())
 	{
@@ -44,8 +43,9 @@ void Controllers::home()
 	default:
 		break;
 	}
+	return SUCCESS;
 }
-void Controllers::menu()
+int Controllers::menu()
 {
 	switch (views.menu())
 	{
@@ -69,29 +69,31 @@ void Controllers::menu()
 	default:
 		break;
 	}
+	return SUCCESS;
 }
 
-void Controllers::menuShow()
+int Controllers::menuShow()
 {
 	views.menuShow(menus);
+	return SUCCESS;
 }
 
-void Controllers::menuAdd()
+int Controllers::menuAdd()
 {
 	Menu temp = views.menuAdd();
-	menus.insert(temp);
-	models.insert(temp);
+	models.insert(menus, temp);
 	models.select(menus);
+	return SUCCESS;
 }
 
-void Controllers::menuRemove()
+int Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
-	menus.remove(temp);
-	models.remove(temp);
+	models.remove(menus, temp);
+	return SUCCESS;
 }
 
-void Controllers::desk()
+int Controllers::desk()
 {
 	switch (views.desk())
 	{
@@ -110,12 +112,14 @@ void Controllers::desk()
 		default:
 			break;*/
 	}
+	return SUCCESS;
 }
-void Controllers::deskShow()
+int Controllers::deskShow()
 {
 	views.deskShow(desks);
+	return SUCCESS;
 }
-void Controllers::addFood()
+int Controllers::addFood()
 {
 	switch (views.addFood())
 	{
@@ -125,37 +129,45 @@ void Controllers::addFood()
 		this->addFoodAdd();
 		this->addFood();
 		break;
+	case 2:
+		this->addFoodShow();
+		this->addFood();
+		break;
 	default:
 		break;
 	}
+	return SUCCESS;
 }
-void Controllers::addFoodAdd()
+int Controllers::addFoodAdd()
 {
 	if (menus.isEmpty()) {
-		this->menuAdd();
-		this->addFoodAdd();
+		console
+			.color(WARNING).p("No menu to addFood!").hr()
+			.color(PRIMARY).p("Add menu to continues..").wait();
+		return FAIL;
 	}
-	else {
-		if (bills.isEmpty()) {
-			this->billAdd();
-			this->addFoodAdd();
-		}
-		else {
-			List<Bill> availableBill;
-			for (int i = 0; i < bills.length; i++) {
-				if (bills[i].payment == false) {
-					availableBill.insert(bills[i]);
-				}
-			}
-			AddFood temp = views.addFoodAdd(availableBill, menus);
-			addFoods.insert(temp);
-			models.insert(temp);
-			models.select(addFoods);
-			models.select(bills);
+	List<Bill> availableBill;
+	for (int i = 0; i < bills.length; i++) {
+		if (bills[i].payment == false) {
+			availableBill.insert(bills[i]);
 		}
 	}
+	if (availableBill.isEmpty()) {
+		console
+			.color(WARNING).p("All bills have been paid! Cannot addFood").hr()
+			.color(PRIMARY).p("Add bill to continues..").wait();
+		return FAIL;
+	}
+	models.insert(addFoods, views.addFoodAdd(availableBill, menus));
+	models.select(addFoods);
+	models.select(bills);
+	return SUCCESS;
 }
-void Controllers::bill()
+int Controllers::addFoodShow() {
+	views.addFoodShow(addFoods);
+	return SUCCESS;
+}
+int Controllers::bill()
 {
 	switch (views.bill())
 	{
@@ -167,15 +179,15 @@ void Controllers::bill()
 		break;
 	case 2:
 		int billId = 0;
-		billId=	this->billPayment();
-		this->billDetail(billId);
+		if (this->billPayment(billId) == SUCCESS) this->billDetail(billId);
 		this->bill();
 		break;
-	/*default:
-		break;*/
+		/*default:
+			break;*/
 	}
+	return SUCCESS;
 }
-void Controllers::billAdd()
+int Controllers::billAdd()
 {
 	List<Desk> availableDesk;
 	for (int i = 0; i < desks.length; i++)
@@ -185,17 +197,21 @@ void Controllers::billAdd()
 			availableDesk.insert(desks[i]);
 		}
 	}
-	Bill temp;
-	temp.deskId = views.billAdd(availableDesk);
-	bills.insert(temp);
-	models.insert(temp);
-	models.select(bills);
-	models.select(desks);
+	if (availableDesk.isEmpty()) {
+		console.color(WARNING).p("No tables available!").wait();
+	}
+	else {
+		Bill temp;
+		temp.deskId = views.billAdd(availableDesk);
+		models.insert(bills, temp);
+		models.select(bills);
+		models.select(desks);
+	}
+	return SUCCESS;
 }
-int Controllers::billPayment()
+int Controllers::billPayment(int& billId)
 {
 	List<Bill> notPayment;
-	cout << bills.length << endl;
 	for (int i = 0; i < bills.length; i++)
 	{
 		if (bills[i].payment == false)
@@ -203,41 +219,44 @@ int Controllers::billPayment()
 			notPayment.insert(bills[i]);
 		}
 	}
-	return views.billPayment(notPayment);
-	/*temp.payment = true;
-	console.print(PRIMARY, "[LIST] Update BILL ");
-	bills.update(temp);
-	console.println(SUCCESS);
-	console.print(PRIMARY, "[SQL] Update BILL ");
-	console.println(models.update(temp));
-	models.select(desks);*/
-}
-void Controllers::billDetail(int billId)
-{
-	
-	Bill temp;
-	temp.billId = billId;
-	temp.payment = views.billDetail(addFoods);
-	console.color(PRIMARY).p( "[LIST] Update BILL ").hr();
-	bills.update(temp);
-	console.status(SUCCESS);
-	console.color(PRIMARY).p( "[SQL] Update BILL ").hr();
-	console.status(models.update(temp)).hr();
-	models.select(desks);
-}
-//void Controllers::deskAdd()
-//{
-//    Desk temp;
-//    temp = views.deskAdd();
-//    table.desk.insertFirst(temp);
-//    this->desk();
-//}
-//void Controllers::deskRemove()
-//{
-//    Desk temp;
-//    temp = views.deskRemove();
-//    table.desk.findOneAndRemove(temp);
-//    this->desk();
-//}
+	if (notPayment.isEmpty()) {
+		console.color(WARNING).p("All bills have been paid!").wait();
+	}
+	else {
+		billId = views.billPayment(notPayment);
+		return SUCCESS;
 
+	}
+	return FAIL;
+}
+int Controllers::billDetail(int billId)
+{
+	List<Menu> menuOfBill;
+	//JOIN
+	for (int i = 0; i < addFoods.length; i++) {
+		if (addFoods[i].billId == billId) {
+			for (int j = 0; j < menus.length; j++) {
+				if (menus[j].foodId == addFoods[i].foodId) {
+					menuOfBill.insert(menus[j]);
+				}
+			}
+		}
+	}
+	Bill temp;
+	for (int i = 0; i < bills.length; i++) {
+		if (bills[i].billId == billId) {
+			temp.total = bills[i].total;
+		}
+	}
+	temp.billId = billId;
+	temp.payment = views.billDetail(menuOfBill, temp);
+	if (temp.payment == false) return FAIL;
+	console
+		.color(PRIMARY).p("[UPDATE] BILL ").hr()
+		.status(models.update(bills, temp)).wait();
+
+	models.select(bills);
+	models.select(desks);
+	return SUCCESS;
+}
 #endif

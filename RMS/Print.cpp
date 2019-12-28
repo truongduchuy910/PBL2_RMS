@@ -34,4 +34,11 @@ Print& Print::status(int status) {
 	}
 	return *this;
 }
+Print& Print::wait() {
+	color(PRIMARY);
+	cout << endl;
+	system("pause");
+	color(WHITE);
+	return *this;
+}
 #endif

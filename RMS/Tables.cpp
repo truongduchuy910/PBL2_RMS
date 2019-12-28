@@ -65,13 +65,13 @@ istream& operator>>(istream& is, Bill& bill)
 	return is;
 }
 
-bool Bill::operator!=(const Bill& content) {
+bool Bill::operator==(const Bill& content) {
 
-	return (this->billId != content.billId);
+	return (this->billId == content.billId);
 }
 ostream& operator<<(ostream& os, const AddFood& addFood)
 {
-	os << setw(7) << addFood.billId << setw(7) << addFood.deskId;
+	os << setw(7) << addFood.billId << setw(7) << addFood.foodId;
 	return os;
 }
 istream& operator>>(istream& is, AddFood& addFood)
@@ -81,5 +81,9 @@ istream& operator>>(istream& is, AddFood& addFood)
 	cout << "quantity: ";
 	is >> addFood.quantity;
 	return is;
+}
+bool AddFood::operator==(const AddFood& content) {
+
+	return (this->billId == content.billId);
 }
 #endif
