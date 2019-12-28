@@ -33,6 +33,7 @@ public:
 	void bill();
 	void billShow();
 	void billAdd();
-	void billPayment();
+	int billPayment();
+	void billDetail(int);
 };
 #endif

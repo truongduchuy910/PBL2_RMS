@@ -27,7 +27,8 @@ public:
 	AddFood addFoodAdd(List<Bill>&, List<Menu>&);
 	int bill();
 	int billAdd(List<Desk>&);
-	int billPayment(List<Bill>& bills);
+	int billPayment(List<Bill>&);
+	int billDetail(List<AddFood>&);
 };
 //Views views;
 #endif

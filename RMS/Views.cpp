@@ -197,4 +197,18 @@ int Views::billPayment(List<Bill>& bills)
 	cin >> billId;
 	return billId;
 }
+int Views::billDetail(List<AddFood>& addFoods)
+{
+	println(WARNING, "=============== BILL DETAIL");
+	AddFood::head();
+	addFoods.out();
+	cout << "Do you want to payment? (Y/N) ";
+	char rep;
+	cin >> rep;
+	if (toupper(rep) == 'Y')
+	{
+		return true;
+	}
+	return false;
+}
 #endif
