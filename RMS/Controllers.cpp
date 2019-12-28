@@ -166,11 +166,13 @@ void Controllers::bill()
 		this->bill();
 		break;
 	case 2:
-		this->billPayment();
+		int billId = 0;
+		billId=	this->billPayment();
+		this->billDetail(billId);
 		this->bill();
 		break;
-	default:
-		break;
+	/*default:
+		break;*/
 	}
 }
 void Controllers::billAdd()
@@ -190,7 +192,7 @@ void Controllers::billAdd()
 	models.select(bills);
 	models.select(desks);
 }
-void Controllers::billPayment()
+int Controllers::billPayment()
 {
 	List<Bill> notPayment;
 	cout << bills.length << endl;
@@ -201,12 +203,25 @@ void Controllers::billPayment()
 			notPayment.insert(bills[i]);
 		}
 	}
-	Bill temp;
-	temp.billId = views.billPayment(notPayment);
-	temp.payment = true;
+	return views.billPayment(notPayment);
+	/*temp.payment = true;
+	console.print(PRIMARY, "[LIST] Update BILL ");
 	bills.update(temp);
-	models.update(temp);
-
+	console.println(SUCCESS);
+	console.print(PRIMARY, "[SQL] Update BILL ");
+	console.println(models.update(temp));
+	models.select(desks);*/
+}
+void Controllers::billDetail(int billId)
+{
+	Bill temp;
+	temp.billId = billId;
+	temp.payment = views.billDetail(addFoods);
+	console.print(PRIMARY, "[LIST] Update BILL ");
+	bills.update(temp);
+	console.println(SUCCESS);
+	console.print(PRIMARY, "[SQL] Update BILL ");
+	console.println(models.update(temp));
 	models.select(desks);
 }
 //void Controllers::deskAdd()
