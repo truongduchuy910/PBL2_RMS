@@ -1,0 +1,3 @@
+﻿  RMS.cpp
+D:\Github\RMS\RMS\Views.h(15,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RMS.vcxproj -> D:\Github\RMS\RMS\x64\Debug\RMS.exe
