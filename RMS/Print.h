@@ -9,6 +9,8 @@
 #define PRIMARY 8
 #define LIGHT 7
 #define WHITE 15
+#define ACCEPT 1
+#define INCORRECT 5
 #include <iostream>
 #include <Windows.h>
 #include <iomanip>
@@ -22,8 +24,14 @@ public:
 	Print& color(const int);
 	Print& hr();
 	template <typename OutData>
-	Print& p(const OutData s) {
+	Print& l(const OutData s) {
 		cout << s;
+		color(WHITE);
+		return *this;
+	};
+	template <typename OutData>
+	Print& p(const OutData s) {
+		cout << s << endl;
 		color(WHITE);
 		return *this;
 	};
@@ -38,7 +46,7 @@ public:
 		return *this;
 	};
 	void move(const int, const int);
-	Print& status(int);
+	Print& status(string, const int);
 	Print& wait();
 };
 #endif

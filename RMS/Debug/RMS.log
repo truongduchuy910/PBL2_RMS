@@ -1,0 +1,19 @@
+﻿  Controllers.cpp
+D:\Github\RMS\RMS\Views.h(15,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  List.cpp
+  Models.cpp
+D:\Github\RMS\RMS\Controllers.cpp(208,33): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+D:\Github\RMS\RMS\Models.cpp(104,10): warning C4101: 'sqlVersion': unreferenced local variable
+D:\Github\RMS\RMS\Models.cpp(183,10): warning C4101: 'sqlVersion': unreferenced local variable
+D:\Github\RMS\RMS\Models.cpp(250,10): warning C4101: 'sqlVersion': unreferenced local variable
+D:\Github\RMS\RMS\Models.cpp(297,83): warning C4145: '==': relational expression as switch expression; possible confusion with '='
+D:\Github\RMS\RMS\Models.cpp(307,2): warning C4809: switch statement has redundant 'default' label; all possible 'case' labels are given
+  Print.cpp
+  RMS.cpp
+D:\Github\RMS\RMS\Models.cpp(313,10): warning C4101: 'sqlVersion': unreferenced local variable
+  Tables.cpp
+  Views.cpp
+D:\Github\RMS\RMS\Views.h(15,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+D:\Github\RMS\RMS\Views.h(15,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RMS.vcxproj -> D:\Github\RMS\RMS\Debug\RMS.exe

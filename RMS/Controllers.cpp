@@ -3,17 +3,10 @@
 #define CONTROLLERS_CPP
 #include"Controllers.h"
 void Controllers::init() {
-	console.color(PRIMARY).p("[SQL] Prepare menus - ");
-	console.status(models.select(menus)).hr();
-
-	console.color(PRIMARY).p("[SQL] Prepare desks - ");
-	console.status(models.select(desks)).hr();
-
-	console.color(PRIMARY).p("[SQL] Prepare bills - ");
-	console.status(models.select(bills)).hr();
-
-	console.color(PRIMARY).p("[SQL] Prepare addFoods - ");
-	console.status(models.select(addFoods)).hr();
+	cs.status("[MODELS] Prepare menus", models.select(menus));
+	cs.status("[MODELS] Prepare desks", models.select(desks));
+	cs.status("[MODELS] Prepare bills", models.select(bills));
+	cs.status("[MODELS] Prepare addFoods", models.select(addFoods));
 }
 int Controllers::home()
 {
@@ -21,29 +14,32 @@ int Controllers::home()
 	{
 	case 0:
 		break;
+
 	case 1:
 		this->menu();
 		this->home();
 		break;
+
 	case 2:
 		this->desk();
 		this->home();
-
 		break;
+
 	case 3:
 		this->addFood();
 		this->home();
-
 		break;
+
 	case 4:
 		this->bill();
 		this->home();
-
 		break;
+
 	default:
 		break;
+
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::menu()
 {
@@ -69,28 +65,29 @@ int Controllers::menu()
 	default:
 		break;
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 
 int Controllers::menuShow()
 {
 	views.menuShow(menus);
-	return SUCCESS;
+	return ACCEPT;
 }
 
 int Controllers::menuAdd()
 {
 	Menu temp = views.menuAdd();
-	models.insert(menus, temp);
+	cs.status("[MODELS] Insert menu", models.insert(menus, temp));
 	models.select(menus);
-	return SUCCESS;
+	return ACCEPT;
 }
 
 int Controllers::menuRemove()
 {
 	Menu temp = views.menuRemove();
-	models.remove(menus, temp);
-	return SUCCESS;
+	cs.status("[MODELS] Remove menu", models.remove(menus, temp));
+	models.select(menus);
+	return ACCEPT;
 }
 
 int Controllers::desk()
@@ -103,21 +100,13 @@ int Controllers::desk()
 		this->deskShow();
 		this->desk();
 		break;
-		/*case 2:
-			this->deskAdd();
-			break;
-		case 3:
-			this->deskRemove();
-			break;
-		default:
-			break;*/
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::deskShow()
 {
 	views.deskShow(desks);
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::addFood()
 {
@@ -136,56 +125,80 @@ int Controllers::addFood()
 	default:
 		break;
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::addFoodAdd()
 {
 	if (menus.isEmpty()) {
-		console
-			.color(WARNING).p("No menu to addFood!").hr()
-			.color(PRIMARY).p("Add menu to continues..").wait();
-		return FAIL;
+		cs
+			.status("No menu to addFood!", WARNING)
+			.status("Add menu to continues..", PRIMARY).wait();
+		return INCORRECT;
 	}
 	List<Bill> availableBill;
-	for (int i = 0; i < bills.length; i++) {
-		if (bills[i].payment == false) {
+	for (int i = 0; i < bills.length; i++)
+		if (bills[i].payment == false)
 			availableBill.insert(bills[i]);
-		}
-	}
+
+
 	if (availableBill.isEmpty()) {
-		console
-			.color(WARNING).p("All bills have been paid! Cannot addFood").hr()
-			.color(PRIMARY).p("Add bill to continues..").wait();
-		return FAIL;
+		cs
+			.status("All bills have been paid! Cannot addFood", WARNING)
+			.status("Add bill to continues..", PRIMARY).wait();
+		return WARNING;
 	}
-	models.insert(addFoods, views.addFoodAdd(availableBill, menus));
-	models.select(addFoods);
-	models.select(bills);
-	return SUCCESS;
+	AddFood temp = views.addFoodAdd(availableBill, menus);
+	bool haveBill = false;
+	bool haveFood = false;
+
+	for (int i = 0; i < availableBill.length; i++)
+		if (temp.billId == availableBill[i].billId)
+			haveBill = true;
+
+	for (int i = 0; i < menus.length; i++)
+		if (temp.foodId == menus[i].foodId)
+			haveFood = true;
+
+	if (haveBill && haveFood && temp.quantity) {
+		cs.status("[VIEWS] AddFood Add", ACCEPT);
+		cs.status("[MODELS] Insert addFood", models.insert(addFoods, temp));
+		models.select(addFoods);
+		models.select(bills);
+		return ACCEPT;
+	}
+	cs.status("[VIEWS] AddFood Add", INCORRECT);
+	return INCORRECT;
 }
 int Controllers::addFoodShow() {
 	views.addFoodShow(addFoods);
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::bill()
 {
+	int billId;
+	int status;
 	switch (views.bill())
 	{
 	case 0:
+		return INCORRECT;
 		break;
 	case 1:
 		this->billAdd();
 		this->bill();
 		break;
 	case 2:
-		int billId = 0;
-		if (this->billPayment(billId) == SUCCESS) this->billDetail(billId);
+		billId = 0;
+		status = this->billPayment(billId);
+		cs.status("[VIEWS] Input billId", status);
+		if (status == ACCEPT)
+			this->billDetail(billId);
 		this->bill();
 		break;
-		/*default:
-			break;*/
+	default:
+		return INCORRECT;
+		break;
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::billAdd()
 {
@@ -198,16 +211,17 @@ int Controllers::billAdd()
 		}
 	}
 	if (availableDesk.isEmpty()) {
-		console.color(WARNING).p("No tables available!").wait();
+		cs.status("No tables available!", WARNING).wait();
+		return INCORRECT;
 	}
 	else {
 		Bill temp;
 		temp.deskId = views.billAdd(availableDesk);
-		models.insert(bills, temp);
+		cs.status("[MODELS] Insert bill", models.insert(bills, temp));
 		models.select(bills);
 		models.select(desks);
 	}
-	return SUCCESS;
+	return ACCEPT;
 }
 int Controllers::billPayment(int& billId)
 {
@@ -220,14 +234,18 @@ int Controllers::billPayment(int& billId)
 		}
 	}
 	if (notPayment.isEmpty()) {
-		console.color(WARNING).p("All bills have been paid!").wait();
+		cs.status("All bills have been paid!", WARNING).wait();
 	}
 	else {
 		billId = views.billPayment(notPayment);
-		return SUCCESS;
+		for (int i = 0; i < notPayment.length; i++)
+		{
+			if (notPayment[i].billId == billId)
+				return ACCEPT;
+		}
 
 	}
-	return FAIL;
+	return INCORRECT;
 }
 int Controllers::billDetail(int billId)
 {
@@ -250,13 +268,10 @@ int Controllers::billDetail(int billId)
 	}
 	temp.billId = billId;
 	temp.payment = views.billDetail(menuOfBill, temp);
-	if (temp.payment == false) return FAIL;
-	console
-		.color(PRIMARY).p("[UPDATE] BILL ").hr()
-		.status(models.update(bills, temp)).wait();
-
+	if (temp.payment == false) return INCORRECT;
+	cs.status("[MODELS] Update bills", models.update(bills, temp)).wait();
 	models.select(bills);
 	models.select(desks);
-	return SUCCESS;
+	return ACCEPT;
 }
 #endif

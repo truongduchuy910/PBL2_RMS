@@ -6,10 +6,10 @@
 #include<cstdlib>
 #include "Print.h"
 class Views;
-class Views : public Print
+class Views
 {
 public:
-	Print console;
+	Print cs;
 	Views()
 	{
 		srand(time(NULL));

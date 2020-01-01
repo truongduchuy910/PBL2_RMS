@@ -19,7 +19,11 @@ void Print::move(int x, int y)
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-Print& Print::status(int status) {
+Print& Print::status(string s, int status) {
+	color(PRIMARY);
+	l(s);
+	int space = 50 - s.length();
+	while (space-- > 0) l(" ");
 	color(status);
 	switch (status) {
 	case SUCCESS:
@@ -30,6 +34,15 @@ Print& Print::status(int status) {
 		break;
 	case WARNING:
 		p("Warning");
+		break;
+	case ACCEPT:
+		p("Accept");
+		break;
+	case INCORRECT:
+		p("Incorrect");
+		break;
+	default:
+		p(" ");
 		break;
 	}
 	return *this;

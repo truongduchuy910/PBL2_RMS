@@ -42,13 +42,17 @@ int Models::insert(List<Menu>& menus, const Menu& menu) {
 	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
 		return SUCCESS;
-	}
-	else {
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
+		break;
+	}
 };
 
 int Models::update(List<Menu>& menus, const Menu& menu) {
@@ -61,12 +65,17 @@ int Models::update(List<Menu>& menus, const Menu& menu) {
 	).c_str();
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
 		return SUCCESS;
-	}
-	else {
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};	return SUCCESS;
+		break;
+	}
 };
 int Models::remove(List<Menu>& menus, const Menu& menu) {
 	menus.remove(menu);
@@ -75,13 +84,17 @@ int Models::remove(List<Menu>& menus, const Menu& menu) {
 	).c_str();
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
 		return SUCCESS;
-	}
-	else {
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
+		break;
+	}
 };
 
 
@@ -91,8 +104,11 @@ int Models::select(List<Menu>& menus) {
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS)) {
-		Menu temp;
+	Menu temp;
+	
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM MENU", SQL_NTS))
+	{
+	case SQL_SUCCESS:
 		menus.empty();
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -100,11 +116,22 @@ int Models::select(List<Menu>& menus) {
 			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
 			menus.insert(temp);
 		}
-	}
-	else {
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		menus.empty();
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, &temp.name, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 3, SQL_DOUBLE, &temp.cost, SQL_RESULT_LEN, &ptrSqlVersion);
+			menus.insert(temp);
+		}
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
+		break;
 	}
-	return SUCCESS;
 }
 
 
@@ -118,12 +145,17 @@ int Models::insert(List<Desk>& desks, const Desk& desk) {
 	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
-	}
-	else {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
+		break;
+	}
 };
 
 int Models::remove(List<Desk>& desks, const Desk& desk) {
@@ -133,12 +165,17 @@ int Models::remove(List<Desk>& desks, const Desk& desk) {
 	).c_str();
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
-	}
-	else {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
+		break;
+	}
 };
 
 int Models::select(List<Desk>& desks) {
@@ -146,8 +183,8 @@ int Models::select(List<Desk>& desks) {
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
 	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM DESK", SQL_NTS)) {
-		Desk temp;
 		desks.empty();
+		Desk temp;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.available, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -171,13 +208,17 @@ int Models::insert(List<Bill>& bills, const Bill& bill) {
 	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
-	}
-	else {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
-
+		break;
+	}
 }
 
 int Models::update(List<Bill>& bills, const Bill& bill) {
@@ -191,21 +232,27 @@ int Models::update(List<Bill>& bills, const Bill& bill) {
 	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
-	}
-	else {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS)) {
+	case SQL_SUCCESS:
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
-
+		break;
+	}
 }
 
 int Models::select(List<Bill>& bills) {
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
-	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM BILL", SQL_NTS)) {
-		Bill temp;
+	Bill temp;
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM BILL", SQL_NTS))
+	{
+	case SQL_SUCCESS:
 		bills.empty();
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
@@ -214,11 +261,23 @@ int Models::select(List<Bill>& bills) {
 			SQLGetData(sqlStmtHandle, 4, SQL_DOUBLE, &temp.total, SQL_RESULT_LEN, &ptrSqlVersion);
 			bills.insert(temp);
 		}
-	}
-	else {
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		bills.empty();
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 3, SQL_INTEGER, &temp.payment, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 4, SQL_DOUBLE, &temp.total, SQL_RESULT_LEN, &ptrSqlVersion);
+			bills.insert(temp);
+		}
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
+		break;
 	}
-	return SUCCESS;
 }
 
 //ADDFOOD
@@ -235,12 +294,17 @@ int Models::insert(List<AddFood>& addFoods, const AddFood& addFood) {
 	);
 	LPCWSTR result = stemp.c_str();
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
-	if (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
-	}
-	else {
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)result, SQL_NTS) == SQL_SUCCESS) {
+	case SQL_SUCCESS:
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
-	};
-	return SUCCESS;
+		break;
+	}
 
 }
 
@@ -248,8 +312,10 @@ int Models::select(List<AddFood>& addFoods) {
 	SQLAllocHandle(SQL_HANDLE_STMT, sqlConnHandle, &sqlStmtHandle);
 	SQLCHAR sqlVersion[SQL_RESULT_LEN];
 	SQLLEN ptrSqlVersion;
-	if (SQL_SUCCESS == SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT FoodID,Quantity,BillID FROM ADDFOOD", SQL_NTS)) {
-		AddFood temp;
+	AddFood temp;
+	switch (SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT FoodID,Quantity,BillID FROM ADDFOOD", SQL_NTS))
+	{
+	case SQL_SUCCESS:
 		addFoods.empty();
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
 			/*SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.addfoodId, SQL_RESULT_LEN, &ptrSqlVersion);*/
@@ -259,11 +325,24 @@ int Models::select(List<AddFood>& addFoods) {
 			SQLGetData(sqlStmtHandle, 3, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
 			addFoods.insert(temp);
 		}
-	}
-	else {
+		return SUCCESS;
+		break;
+	case SQL_SUCCESS_WITH_INFO:
+		addFoods.empty();
+		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
+			/*SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.addfoodId, SQL_RESULT_LEN, &ptrSqlVersion);*/
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &temp.foodId, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 2, SQL_INTEGER, &temp.quantity, SQL_RESULT_LEN, &ptrSqlVersion);
+			/*SQLGetData(sqlStmtHandle, 4, SQL_INTEGER, &temp.deskId, SQL_RESULT_LEN, &ptrSqlVersion);*/
+			SQLGetData(sqlStmtHandle, 3, SQL_INTEGER, &temp.billId, SQL_RESULT_LEN, &ptrSqlVersion);
+			addFoods.insert(temp);
+		}
+		return SUCCESS;
+		break;
+	default:
 		return FAIL;
+		break;
 	}
-	return SUCCESS;
 }
 string Models::parentheses(const string s) {
 	return (" (" + s + ") ");
