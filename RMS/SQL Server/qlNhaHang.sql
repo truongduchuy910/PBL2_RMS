@@ -2,13 +2,13 @@
 use qlNhaHang
 create table DESK
 (
-   DeskID int primary key,
+   DeskID int primary key not null,
    Available bit default('1')
 )
 create table BILL
 (
    BillID int identity(1000,1) primary key,
-   DeskID int,
+   DeskID int not null,
    Payment bit default('0'),
    --payment kiểu true false để biết trạng thái thanh toán
    Total money default(0)
@@ -16,14 +16,15 @@ create table BILL
 )
 create table MENU
 (
-   FoodID int identity(5000,1) primary key,
+   FoodID int identity(5000,1) primary key not null,
    --foodId
    FoodName nvarchar(50) not null unique,
    --name
-   Cost money 
+   Cost money not null
 )
 create table ADDFOOD
 (
+   Stt int identity(1,1) primary key, --So tt
    FoodID int,
    Quantity int not null,
    BillID int
